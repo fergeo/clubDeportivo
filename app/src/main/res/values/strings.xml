@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">clubDeportivo</string>
+    <string name="lbl_Login">Login</string>
+    <string name="login">Login</string>
+</resources>

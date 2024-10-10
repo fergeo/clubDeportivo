@@ -1,0 +1,298 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/generalBack">
+
+    <TextView
+        android:id="@+id/lbl_title_charge_fee"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:textSize="40dp"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="20dp"
+        android:text="Factura" />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="520dp"
+        android:orientation="vertical"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/areas">
+
+        <!-- Area de Datos del Cliente -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/green">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/green">
+
+                <TextView
+                    android:id="@+id/lbl_number"
+                    android:layout_width="180dp"
+                    android:layout_height="match_parent"
+                    android:text="Nro. de Socio: 3510"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/lbl_dni"
+                    android:layout_width="160dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="2dp"
+                    android:text="DNI: 35082464"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/green">
+
+                <TextView
+                    android:id="@+id/lbl_name"
+                    android:layout_width="180dp"
+                    android:layout_height="match_parent"
+                    android:text="Nombre: Mariela"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/lbl_surname"
+                    android:layout_width="300dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="2dp"
+                    android:text="Apellido: Laureat"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Area de Datos de Futura Factura -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/green">
+
+            <!--Titulos de datos de la futura Factura-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/green">
+
+                <TextView
+                    android:id="@+id/lbl_activity_title"
+                    android:layout_width="180dp"
+                    android:layout_height="match_parent"
+                    android:textSize="20dp"
+                    android:text="Actividad"/>
+
+                <TextView
+                    android:id="@+id/lbl_mount_title"
+                    android:layout_width="160dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="90dp"
+                    android:textSize="20dp"
+                    android:text="Monto"/>
+
+            </LinearLayout>
+
+            <!--Line-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/black">
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/green">
+
+                <TextView
+                    android:id="@+id/lbl_activity1"
+                    android:layout_width="180dp"
+                    android:layout_height="match_parent"
+                    android:textSize="20dp"
+                    android:text="Salsa"/>
+
+                <TextView
+                    android:id="@+id/lbl_mount1"
+                    android:layout_width="160dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="90dp"
+                    android:textSize="20dp"
+                    android:text="65000"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/green">
+
+                <TextView
+                    android:id="@+id/lbl_activity2"
+                    android:layout_width="180dp"
+                    android:layout_height="match_parent"
+                    android:textSize="20dp"
+                    android:text="Zumba"/>
+
+                <TextView
+                    android:id="@+id/lbl_mount2"
+                    android:layout_width="160dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="90dp"
+                    android:textSize="20dp"
+                    android:text="65000"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/green">
+
+                <TextView
+                    android:id="@+id/lbl_activity3"
+                    android:layout_width="180dp"
+                    android:layout_height="match_parent"
+                    android:textSize="20dp"
+                    android:text="Musculación"/>
+
+                <TextView
+                    android:id="@+id/lbl_mount3"
+                    android:layout_width="160dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="90dp"
+                    android:textSize="20dp"
+                    android:text="80000"/>
+
+            </LinearLayout>
+
+            <!--Line-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/black">
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/green">
+
+                <TextView
+                    android:id="@+id/lbl_total"
+                    android:layout_width="160dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="200dp"
+                    android:textSize="20dp"
+                    android:text="Total:   210000"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Area de Forma de pago -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/green">
+
+            <TextView
+                android:id="@+id/lbl_pay_way"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
+                android:text="Forma de Pago: Tarjeta de Credito"/>
+
+            <TextView
+                android:id="@+id/lbl"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
+                android:text="Cuotas: 3"/>
+
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_print"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="20dp"
+        android:textSize="30dp"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/buttons"
+        android:text="Imprimir" />
+
+</LinearLayout>

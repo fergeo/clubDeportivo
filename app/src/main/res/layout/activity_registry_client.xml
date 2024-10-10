@@ -1,0 +1,178 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/generalBack">
+
+
+    <TextView
+        android:id="@+id/lbl_registryClient"
+        android:layout_width="300dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:textSize="35dp"
+        android:text="Registrar CLiente" />
+
+    <!--DNI-->
+    <TextView
+        android:id="@+id/lbl_dni"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="15dp"
+        android:text="DNI" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="340dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="30dp"
+        android:background="@color/white">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_dni"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:hint="DNI" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--Nombre-->
+    <TextView
+        android:id="@+id/lbl_nombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="30dp"
+        android:text="Nombre" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="340dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="30dp"
+        android:background="@color/white">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_name"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:hint="Nombre" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--Suname-->
+    <TextView
+        android:id="@+id/lbl_apellido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:text="Apellido" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="340dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="30dp"
+        android:background="@color/white">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_surname"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:hint="Apellido" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--E-mail-->
+    <TextView
+        android:id="@+id/lbl_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:text="E-mail" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="340dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="30dp"
+        android:background="@color/white">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_email"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:hint="Email" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--Apto Fisico-->
+    <CheckBox
+        android:id="@+id/chk_apto_fisico"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:text="Apto Fisico" />
+
+    <!--Socio?-->
+    <CheckBox
+        android:id="@+id/chk_socio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:text="Socio" />
+
+    <!--Boton Limpiar-->
+    <Button
+        android:id="@+id/btn_clean"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="10dp"
+        android:textSize="30dp"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/buttons"
+        android:text="Limpiar" />
+
+    <!--Boton Volver y Aceptar-->
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="@color/generalBack">
+
+        <Button
+            android:id="@+id/btn_return"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:textSize="30dp"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/buttons"
+            android:text="Volver" />
+
+        <Button
+            android:id="@+id/btn_acept"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/buttons"
+            android:text="Aceptar" />
+
+    </LinearLayout>
+
+</LinearLayout>

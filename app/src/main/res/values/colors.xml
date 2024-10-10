@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="orange">#FFBA00</color>
+    <color name="red">#710000</color>
+    <color name="grisOs">#710000</color>
+    <color name="azul">#0000FF</color>
+    <color name="buttonLog">#A88626</color>
+    <color name="generalBack">#808080</color>
+    <color name="buttons">#A88626</color>
+    <color name="areas">#E1C11A</color>
+    <color name="green">#A1C116</color>
+</resources>
