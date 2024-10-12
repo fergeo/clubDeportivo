@@ -42,7 +42,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_search"
         android:layout_width="200dp"
         android:layout_height="80dp"
         android:layout_marginTop="10dp"
@@ -53,7 +53,7 @@
         android:backgroundTint="@color/buttons"/>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_return"
         android:layout_width="300dp"
         android:layout_height="80dp"
         android:layout_marginTop="230dp"

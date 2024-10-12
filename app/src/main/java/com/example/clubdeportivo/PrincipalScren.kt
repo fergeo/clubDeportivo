@@ -30,8 +30,8 @@ class PrincipalScren : AppCompatActivity() {
 
         val btn_payment = findViewById<Button>(R.id.btn_payment)
         btn_payment.setOnClickListener {
-            val chargeFee = Intent(this, ChargeFee::class.java)
-            startActivity(chargeFee)
+            val payFee = Intent(this, PayFee::class.java)
+            startActivity(payFee)
         }
 
         val btn_Logout = findViewById<Button>(R.id.btn_Logout)
