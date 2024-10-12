@@ -1,5 +1,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,61 +7,94 @@
 
     <TextView
         android:id="@+id/lbl_title_list_fee"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:textSize="40dp"
-        android:layout_marginLeft="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
-        android:text="Listar Vencimientos" />
+        android:text="@string/listar_vencimientos"
+        android:textSize="40sp"
+        tools:ignore="TextContrastCheck" />
 
     <!-- Area de Busqueda -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_height="80dp"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:background="@color/areas">
 
-        <TextView
-            android:id="@+id/lbl_from"
-            android:layout_width="65dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:text="Desde:"
-            android:textSize="20dp" />
+        <!-- Desde -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
+            android:background="@color/areas"
+            android:orientation="horizontal"
+            tools:ignore="TextSizeCheck">
 
-        <EditText
-            android:id="@+id/editTextFrom"
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="5dp"
-            android:background="@color/white"
-            android:ems="5"
-            android:inputType="date" />
+            <TextView
+                android:id="@+id/lbl_from"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_marginTop="-15dp"
+                android:text="@string/desde"
+                tools:ignore="VisualLintBounds" />
 
-        <TextView
-            android:id="@+id/lbl_to"
-            android:layout_width="65dp"
-            android:layout_height="30dp"
-            android:textSize="20dp"
-            android:layout_marginLeft="10dp"
-            android:text="Hasta:" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="160dp"
+                android:layout_height="30dp">
 
-        <EditText
-            android:id="@+id/editTextTo"
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="10dp"
-            android:background="@color/white"
-            android:ems="5"
-            android:inputType="date" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/input_from"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:hint="@string/fecha_desde"
+                    tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <!-- Desde -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+
+            android:layout_marginEnd="20dp"
+            android:background="@color/areas"
+            android:orientation="horizontal"
+            tools:ignore="TextSizeCheck,VisualLintBounds">
+
+            <TextView
+                android:id="@+id/lbl_to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_marginTop="-15dp"
+                android:text="@string/hasta"
+                tools:ignore="VisualLintBounds" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="160dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/input_to"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:hint="@string/fecha_desde"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -70,21 +102,22 @@
         android:id="@+id/btn_search"
         android:layout_width="200dp"
         android:layout_height="55dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
         android:layout_marginBottom="20dp"
-        android:textSize="30dp"
-        android:textColor="@color/black"
         android:backgroundTint="@color/buttons"
-        android:text="Buscar" />
+        android:text="@string/buscar"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <!-- Area de Listado -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:orientation="vertical"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:background="@color/areas">
@@ -101,43 +134,48 @@
 
             <TextView
                 android:id="@+id/lbl_title_fecVec"
-                android:layout_width="60dp"
-                android:layout_height="30dp"
-                android:textSize="15dp"
-                android:layout_marginLeft="20dp"
-                android:text="Fec. Vec." />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/fec_vec"
+                android:textSize="15sp"
+                tools:ignore="TextContrastCheck" />
 
             <TextView
                 android:id="@+id/lbl_title_dni"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:textSize="15dp"
-                android:layout_marginLeft="20dp"
-                android:text="DNI." />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/dni"
+                android:textSize="15sp"
+                tools:ignore="TextContrastCheck" />
 
             <TextView
                 android:id="@+id/lbl_title_nombre"
-                android:layout_width="60dp"
-                android:layout_height="35dp"
-                android:textSize="15dp"
-                android:layout_marginLeft="30dp"
-                android:text="Nombre" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:text="@string/nombre"
+                android:textSize="15sp"
+                tools:ignore="TextContrastCheck" />
 
             <TextView
                 android:id="@+id/lbl_title_apellido"
-                android:layout_width="60dp"
-                android:layout_height="30dp"
-                android:textSize="15dp"
-                android:layout_marginLeft="5dp"
-                android:text="Apellido" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="@string/apellido"
+                android:textSize="15sp"
+                tools:ignore="TextContrastCheck" />
 
             <TextView
                 android:id="@+id/lbl_title_Monto"
-                android:layout_width="80dp"
-                android:layout_height="30dp"
-                android:textSize="15dp"
-                android:layout_marginLeft="5dp"
-                android:text="Monto" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/monto"
+                android:textSize="15sp"
+                tools:ignore="TextContrastCheck" />
 
         </LinearLayout>
 
@@ -148,7 +186,8 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:background="@color/areas">
+            android:background="@color/areas"
+            tools:ignore="VisualLintBounds">
 
             <!-- Area de Listado -->
             <LinearLayout
@@ -171,49 +210,49 @@
 
                     <TextView
                         android:id="@+id/lbl_fecVec1"
-                        android:layout_width="80dp"
-                        android:layout_height="30dp"
-                        android:textSize="15dp"
-                        android:layout_marginLeft="5dp"
-                        android:text="10/09/2024" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="5dp"
+                        android:text="@string/_10_09_2024" />
 
                     <TextView
                         android:id="@+id/lbl_dni1"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:textSize="15dp"
-                        android:layout_marginLeft="5dp"
-                        android:text="30145846" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="5dp"
+                        android:text="@string/_30145846" />
 
                     <TextView
                         android:id="@+id/lbl_nombre1"
-                        android:layout_width="50dp"
-                        android:layout_height="30dp"
-                        android:textSize="15dp"
-                        android:layout_marginLeft="10dp"
-                        android:text="Juan" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/juan" />
 
                     <TextView
                         android:id="@+id/lbl_apellido1"
-                        android:layout_width="50dp"
-                        android:layout_height="30dp"
-                        android:textSize="15dp"
-                        android:layout_marginLeft="10dp"
-                        android:text="Perez" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="30dp"
+                        android:text="@string/perez" />
 
                     <TextView
                         android:id="@+id/lbl_Monto1"
-                        android:layout_width="80dp"
-                        android:layout_height="30dp"
-                        android:textSize="15dp"
-                        android:layout_marginLeft="15dp"
-                        android:text="120000" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="15dp"
+                        android:text="@string/_120000" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginTop="10dp"
                     android:paddingTop="5dp"
@@ -223,43 +262,43 @@
 
                     <TextView
                         android:id="@+id/lbl_fecVec2"
-                        android:layout_width="80dp"
-                        android:layout_height="30dp"
-                        android:textSize="15dp"
-                        android:layout_marginLeft="5dp"
-                        android:text="10/09/2024" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="5dp"
+                        android:text="@string/date_10_09_2024" />
 
                     <TextView
                         android:id="@+id/lbl_dni2"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:textSize="15dp"
-                        android:layout_marginLeft="5dp"
-                        android:text="30145846" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="5dp"
+                        android:text="@string/date_30145846" />
 
                     <TextView
                         android:id="@+id/lbl_nombre2"
-                        android:layout_width="50dp"
-                        android:layout_height="30dp"
-                        android:textSize="15dp"
-                        android:layout_marginLeft="10dp"
-                        android:text="Juan" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/juan" />
 
                     <TextView
                         android:id="@+id/lbl_apellido2"
-                        android:layout_width="50dp"
-                        android:layout_height="30dp"
-                        android:textSize="15dp"
-                        android:layout_marginLeft="10dp"
-                        android:text="Perez" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="30dp"
+                        android:text="@string/perez" />
 
                     <TextView
                         android:id="@+id/lbl_Monto2"
-                        android:layout_width="80dp"
-                        android:layout_height="30dp"
-                        android:textSize="15dp"
-                        android:layout_marginLeft="15dp"
-                        android:text="120000" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="15dp"
+                        android:text="@string/mount_120000" />
 
                 </LinearLayout>
 
@@ -275,43 +314,43 @@
 
                     <TextView
                         android:id="@+id/lbl_fecVec3"
-                        android:layout_width="80dp"
-                        android:layout_height="30dp"
-                        android:textSize="15dp"
-                        android:layout_marginLeft="5dp"
-                        android:text="10/09/2024" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="5dp"
+                        android:text="@string/_10_09_2024" />
 
                     <TextView
                         android:id="@+id/lbl_dni3"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:textSize="15dp"
-                        android:layout_marginLeft="5dp"
-                        android:text="30145846" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="5dp"
+                        android:text="@string/dni_30145846" />
 
                     <TextView
                         android:id="@+id/lbl_nombre3"
-                        android:layout_width="50dp"
-                        android:layout_height="30dp"
-                        android:textSize="15dp"
-                        android:layout_marginLeft="10dp"
-                        android:text="Juan" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/juan" />
 
                     <TextView
                         android:id="@+id/lbl_apellido3"
-                        android:layout_width="50dp"
-                        android:layout_height="30dp"
-                        android:textSize="15dp"
-                        android:layout_marginLeft="10dp"
-                        android:text="Perez" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="30dp"
+                        android:text="@string/perez" />
 
                     <TextView
                         android:id="@+id/lbl_Monto3"
-                        android:layout_width="80dp"
-                        android:layout_height="30dp"
-                        android:textSize="15dp"
-                        android:layout_marginLeft="15dp"
-                        android:text="120000" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="15dp"
+                        android:text="@string/monto_120000" />
 
                 </LinearLayout>
 
@@ -327,43 +366,43 @@
 
                     <TextView
                         android:id="@+id/lbl_fecVec4"
-                        android:layout_width="80dp"
-                        android:layout_height="30dp"
-                        android:textSize="15dp"
-                        android:layout_marginLeft="5dp"
-                        android:text="10/09/2024" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="5dp"
+                        android:text="@string/date_10_09_2024" />
 
                     <TextView
                         android:id="@+id/lbl_dni5"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:textSize="15dp"
-                        android:layout_marginLeft="5dp"
-                        android:text="30145846" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="5dp"
+                        android:text="@string/dni_30145846" />
 
                     <TextView
                         android:id="@+id/lbl_nombre4"
-                        android:layout_width="50dp"
-                        android:layout_height="30dp"
-                        android:textSize="15dp"
-                        android:layout_marginLeft="10dp"
-                        android:text="Juan" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/juan" />
 
                     <TextView
                         android:id="@+id/lbl_apellido4"
-                        android:layout_width="50dp"
-                        android:layout_height="30dp"
-                        android:textSize="15dp"
-                        android:layout_marginLeft="10dp"
-                        android:text="Perez" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="30dp"
+                        android:text="@string/perez" />
 
                     <TextView
                         android:id="@+id/lbl_Monto4"
-                        android:layout_width="80dp"
-                        android:layout_height="30dp"
-                        android:textSize="15dp"
-                        android:layout_marginLeft="15dp"
-                        android:text="120000" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="15dp"
+                        android:text="@string/mount_120000" />
 
                 </LinearLayout>
 
@@ -376,13 +415,14 @@
         android:id="@+id/btn_return"
         android:layout_width="200dp"
         android:layout_height="55dp"
-        android:layout_marginLeft="100dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="15dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginEnd="40dp"
         android:layout_marginBottom="20dp"
-        android:textSize="30dp"
-        android:textColor="@color/black"
         android:backgroundTint="@color/buttons"
-        android:text="Volver" />
+        android:text="@string/volver"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        tools:ignore="TextSizeCheck" />
 
 </LinearLayout>

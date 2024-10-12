@@ -1,5 +1,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,55 +9,58 @@
         android:id="@+id/lbl_title_print"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:textSize="50dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
-        android:text="Cobrar Cuota" />
+        android:text="@string/cobrar_cuota"
+        android:textSize="50sp"
+        tools:ignore="TextSizeCheck,TextContrastCheck" />
 
     <TextView
         android:id="@+id/lbl_dni"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="40dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="100dp"
-        android:text="DNI" />
+        android:text="@string/dni"
+        android:textSize="40sp"
+        tools:ignore="TextContrastCheck" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="350dp"
+        android:id="@+id/input_dni_search"
+        android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="20dp"
         android:background="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="340dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:textSize="40dp"
-            android:hint="DNI" />
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:hint="@string/dni"
+            android:textSize="30sp"
+            tools:ignore="DuplicateSpeakableTextCheck,VisualLintTextFieldSize" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/btn_search"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="80dp"
-        android:textSize="30dp"
+        android:id="@+id/button"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="100dp"
+        android:textSize="30sp"
+        android:text="@string/buscar"
         android:textColor="@color/black"
-        android:backgroundTint="@color/buttons"
-        android:text="Buscar" />
+        android:backgroundTint="@color/buttons"/>
 
     <Button
-        android:id="@+id/btn_return"
-        android:layout_width="320dp"
+        android:id="@+id/button2"
+        android:layout_width="300dp"
         android:layout_height="80dp"
-        android:textSize="30dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="230dp"
+        android:layout_marginStart="50dp"
         android:textColor="@color/black"
+        android:textSize="30sp"
         android:backgroundTint="@color/buttons"
-        android:text="Volver" />
+        android:text="@string/volver" />
 
 </LinearLayout>

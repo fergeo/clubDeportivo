@@ -1,5 +1,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,27 +9,28 @@
         android:id="@+id/btm_register"
         android:layout_width="300dp"
         android:layout_height="10dp"
-        android:layout_weight="1"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="40dp"
-        android:textSize="30dp"
-        android:textColor="@color/black"
+        android:layout_marginEnd="40dp"
+        android:layout_weight="1"
         android:backgroundTint="@color/buttons"
-        android:text="Registrar Cliente" />
+        android:text="@string/registrar_cliente"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        tools:ignore="TextSizeCheck" />
 
     <Button
         android:id="@+id/btn_license"
         android:layout_width="300dp"
         android:layout_height="10dp"
         android:layout_weight="1"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="40dp"
         android:layout_marginTop="40dp"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:textColor="@color/black"
         android:backgroundTint="@color/buttons"
-        android:text="Inprimir Carnet" />
+        android:text="@string/inprimir_carnet" />
 
     <Button
         android:id="@+id/btn_list"
@@ -38,12 +38,12 @@
         android:layout_height="10dp"
         android:layout_weight="1"
         android:layout_marginTop="40dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="40dp"
-        android:textSize="30dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="40dp"
+        android:textSize="30sp"
         android:textColor="@color/black"
         android:backgroundTint="@color/buttons"
-        android:text="Listar CUotas" />
+        android:text="@string/listar_cuotas" />
 
     <Button
         android:id="@+id/btn_payment"
@@ -51,12 +51,12 @@
         android:layout_height="10dp"
         android:layout_weight="1"
         android:layout_marginTop="40dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="40dp"
-        android:textSize="30dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="40dp"
+        android:textSize="30sp"
         android:textColor="@color/black"
         android:backgroundTint="@color/buttons"
-        android:text="Cobrar Cuota" />
+        android:text="@string/cobrar_cuota" />
 
     <Button
         android:id="@+id/btn_Logout"
@@ -67,8 +67,10 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
         android:layout_weight="1"
-        android:textSize="60dp"
+        android:textSize="60sp"
         android:textColor="@color/black"
         android:backgroundTint="@color/buttons"
-        android:text="Salir" />
+        android:text="@string/salir"
+        tools:ignore="VisualLintButtonSize" />
+
 </LinearLayout>
