@@ -15,25 +15,25 @@ class RegistryClient : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_registry_client)
 
+        /*
+        val btn_clean = findViewById<Button>(R.id.btn_clean)
+        btn_clean.setOnClickListener {
 
-/*
-            val btn_clean = findViewById<Button>(R.id.btn_clean)
-            btn_clean.setOnClickListener {
-
-            var input_dni = (TextView)findViewById(R.id.input_dni)
+            var input_dni = (EditText)findViewById(R.id.input_dni)
             input_dni.setText("")
 
-            var input_name = (TextView)findViewById(R.id.input_name)
+            var input_name = (EditText)findViewById(R.id.input_name)
             input_dni.setText("")
 
-            var input_surname = (TextView)findViewById(R.id.input_surname)
+            var input_surname = (EditText)findViewById(R.id.input_surname)
             input_dni.setText("")
 
-            var input_email = (TextView)findViewById(R.id.input_email)
+            var input_email = (EditText)findViewById(R.id.input_email)
             input_dni.setText("")
 
         }
-*/
+        */
+
 
         val btn_return = findViewById<Button>(R.id.btn_return)
         btn_return.setOnClickListener {

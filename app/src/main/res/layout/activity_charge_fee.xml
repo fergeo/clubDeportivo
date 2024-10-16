@@ -276,7 +276,7 @@
 
             <ListView
                 android:id="@+id/listView_pay_way"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:background="@color/white"/>
 
@@ -302,7 +302,7 @@
 
             <ListView
                 android:id="@+id/listView_fee"
-                android:layout_width="80dp"
+                android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginStart="10dp"
                 android:background="@color/white"/>
