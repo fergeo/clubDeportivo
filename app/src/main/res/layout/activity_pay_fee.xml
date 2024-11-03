@@ -1,0 +1,66 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/generalBack">
+
+    <TextView
+        android:id="@+id/lbl_title_print"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/cobrar_cuota"
+        android:textSize="50sp"
+        tools:ignore="TextSizeCheck,TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/lbl_dni"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="100dp"
+        android:text="@string/dni"
+        android:textSize="40sp"
+        tools:ignore="TextContrastCheck" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_dni_search"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/white">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:hint="@string/dni"
+            android:textSize="30sp"
+            tools:ignore="DuplicateSpeakableTextCheck,VisualLintTextFieldSize" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_search"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="100dp"
+        android:textSize="30sp"
+        android:text="@string/buscar"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/buttons"/>
+
+    <Button
+        android:id="@+id/btn_return"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="230dp"
+        android:layout_marginStart="50dp"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:backgroundTint="@color/buttons"
+        android:text="@string/volver" />
+
+</LinearLayout>

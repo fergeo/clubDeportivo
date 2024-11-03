@@ -1,0 +1,76 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/generalBack">
+
+    <Button
+        android:id="@+id/btm_register"
+        android:layout_width="300dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/buttons"
+        android:text="@string/registrar_cliente"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        tools:ignore="TextSizeCheck" />
+
+    <Button
+        android:id="@+id/btn_license"
+        android:layout_width="300dp"
+        android:layout_height="10dp"
+        android:layout_weight="1"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="40dp"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/buttons"
+        android:text="@string/inprimir_carnet" />
+
+    <Button
+        android:id="@+id/btn_list"
+        android:layout_width="300dp"
+        android:layout_height="10dp"
+        android:layout_weight="1"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="40dp"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/buttons"
+        android:text="@string/listar_cuotas" />
+
+    <Button
+        android:id="@+id/btn_payment"
+        android:layout_width="300dp"
+        android:layout_height="10dp"
+        android:layout_weight="1"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="40dp"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/buttons"
+        android:text="@string/cobrar_cuota" />
+
+    <Button
+        android:id="@+id/btn_Logout"
+        android:layout_width="370dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="1"
+        android:textSize="60sp"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/buttons"
+        android:text="@string/salir"
+        tools:ignore="VisualLintButtonSize" />
+
+</LinearLayout>

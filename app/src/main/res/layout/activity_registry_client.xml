@@ -1,0 +1,198 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/generalBack"
+    tools:ignore="VisualLintBounds">
+
+    <TextView
+        android:id="@+id/lbl_registryClient"
+        android:layout_width="300dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/registrar_cliente"
+        android:textColor="#263238"
+        android:textSize="35sp"
+        tools:ignore="TextSizeCheck" />
+
+    <!--DNI-->
+    <TextView
+        android:id="@+id/lbl_dni"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/dni"
+        android:textColor="#263238"
+        android:textSize="30sp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="340dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="30dp"
+        android:background="@color/white">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_dni"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:hint="@string/dni"
+            android:textSize="30sp"
+            tools:ignore="DuplicateSpeakableTextCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--Nombre-->
+    <TextView
+        android:id="@+id/lbl_nombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/nombre"
+        android:textColor="#263238"
+        android:textSize="30sp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="340dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="30dp"
+        android:background="@color/white">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_name"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:hint="@string/nombre"
+            android:textSize="30sp"
+            tools:ignore="DuplicateSpeakableTextCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--Suname-->
+    <TextView
+        android:id="@+id/lbl_apellido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/apellido"
+        android:textColor="#263238"
+        android:textSize="30sp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="340dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="30dp"
+        android:background="@color/white">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_surname"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textSize="30sp"
+            android:hint="@string/apellido"
+            tools:ignore="DuplicateSpeakableTextCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--E-mail-->
+    <TextView
+        android:id="@+id/lbl_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/e_mail"
+        android:textColor="#263238"
+        android:textSize="30sp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="340dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="30dp"
+        android:background="@color/white">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_email"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textSize="30sp"
+            android:hint="@string/e_mail"
+            tools:ignore="DuplicateSpeakableTextCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--Apto Fisico-->
+    <CheckBox
+        android:id="@+id/chk_apto_fisico"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/apto_fisico"
+        tools:ignore="VisualLintButtonSize" />
+
+    <!--Socio?-->
+    <CheckBox
+        android:id="@+id/chk_socio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/socio"
+        tools:ignore="VisualLintButtonSize" />
+
+    <!--Boton Limpiar-->
+    <Button
+        android:id="@+id/btn_clean"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="10dp"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/buttons"
+        android:text="@string/limpiar" />
+
+    <!--Boton Volver y Aceptar-->
+    <LinearLayout
+        style="?android:attr/buttonBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:background="@color/generalBack">
+
+        <Button
+            android:id="@+id/btn_return"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:textSize="30sp"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/buttons"
+            android:text="@string/volver" />
+
+        <Button
+            android:id="@+id/btn_acept"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/buttons"
+            android:text="@string/aceptar" />
+
+    </LinearLayout>
+
+</LinearLayout>
