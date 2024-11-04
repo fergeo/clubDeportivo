@@ -6,6 +6,16 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 
+class Client {
+    var idClient: Int = 0
+    var dniClient: String? = null
+    var nameClient: String? = null
+    var surnameClient: String? = null
+    var emailClient: String? = null
+    var essocioClient: Boolean = false
+    var nroClient: String? = null
+}
+
 class ClientDatabaseHelper(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
@@ -13,26 +23,26 @@ class ClientDatabaseHelper(context: Context) :
         const val DATABASE_NAME = "CLUBDEPORTIVO.db"
         const val DATABASE_VERSION = 1
         const val TABLE_CLIENT = "Client"
-        const val TABLE_CLIENT_ID = "idClient"
-        const val TABLE_CLIENT_DNI = "dniClient"
-        const val TABLE_CLIENT_NAME = "nameClient"
-        const val TABLE_CLIENT_SURNAME = "surnameClient"
-        const val TABLE_CLIENT_EMAIL = "emailClient"
-        const val TABLE_CLIENT_PHYSICALLYFIT = "physicallyfitClient"
-        const val TABLE_CLIENT_ESSOCIO = "essocioClient"
-        const val TABLE_CLIENT_NROCLIENT = "nroClient"
+        const val COLUMN_CLIENT_ID = "idClient"
+        const val COLUMN_CLIENT_DNI = "dniClient"
+        const val COLUMN_CLIENT_NAME = "nameClient"
+        const val COLUMN_CLIENT_SURNAME = "surnameClient"
+        const val COLUMN_CLIENT_EMAIL = "emailClient"
+        const val COLUMN_CLIENT_PHYSICALLYFIT = "physicallyfitClient"
+        const val COLUMN_CLIENT_ESSOCIO = "essocioClient"
+        const val COLUMN_CLIENT_NROCLIENT = "nroClient"
     }
 
     override fun onCreate(db: SQLiteDatabase) {
         val createTableUser = ("CREATE TABLE " + TABLE_CLIENT + " ("
-                + TABLE_CLIENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + TABLE_CLIENT_DNI + " TEXT, "
-                + TABLE_CLIENT_NAME + " TEXT, "
-                + TABLE_CLIENT_SURNAME + " TEXT, "
-                + TABLE_CLIENT_EMAIL + " TEXT, "
-                + TABLE_CLIENT_PHYSICALLYFIT + " INTEGER, "
-                + TABLE_CLIENT_ESSOCIO + " INTEGER, "
-                + TABLE_CLIENT_NROCLIENT + " TEXT)")
+                + COLUMN_CLIENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + COLUMN_CLIENT_DNI + " TEXT, "
+                + COLUMN_CLIENT_NAME + " TEXT, "
+                + COLUMN_CLIENT_SURNAME + " TEXT, "
+                + COLUMN_CLIENT_EMAIL + " TEXT, "
+                + COLUMN_CLIENT_PHYSICALLYFIT + " INTEGER, "
+                + COLUMN_CLIENT_ESSOCIO + " INTEGER, "
+                + COLUMN_CLIENT_NROCLIENT + " TEXT)")
 
         db.execSQL(createTableUser)
         Log.d("ClientDatabaseHelper", "Tabla Client creada.")
@@ -54,13 +64,13 @@ class ClientDatabaseHelper(context: Context) :
     ): Long {
         val db = this.writableDatabase
         val values = ContentValues().apply {
-            put(TABLE_CLIENT_DNI, dni)
-            put(TABLE_CLIENT_NAME, name)
-            put(TABLE_CLIENT_SURNAME, surname)
-            put(TABLE_CLIENT_EMAIL, email)
-            put(TABLE_CLIENT_PHYSICALLYFIT, if (physicallyfit) 1 else 0)
-            put(TABLE_CLIENT_ESSOCIO, if (essocio) 1 else 0)
-            put(TABLE_CLIENT_NROCLIENT, nroclient)
+            put(COLUMN_CLIENT_ID, dni)
+            put(COLUMN_CLIENT_DNI, name)
+            put(COLUMN_CLIENT_NAME, surname)
+            put(COLUMN_CLIENT_SURNAME, email)
+            put(COLUMN_CLIENT_EMAIL, if (physicallyfit) 1 else 0)
+            put(COLUMN_CLIENT_ESSOCIO, if (essocio) 1 else 0)
+            put(COLUMN_CLIENT_NROCLIENT, nroclient)
         }
         val success = db.insert(TABLE_CLIENT, null, values)
         db.close()
@@ -69,17 +79,40 @@ class ClientDatabaseHelper(context: Context) :
 
     fun searchClient(dni: String): Boolean {
         val db = this.readableDatabase
-        val query = "SELECT * FROM $TABLE_CLIENT WHERE $TABLE_CLIENT_DNI = ?"
-        var exists = false
-
+        val query = "SELECT * FROM $TABLE_CLIENT WHERE $COLUMN_CLIENT_DNI = ?"
         val cursor = db.rawQuery(query, arrayOf(dni))
+        val exists = cursor.count > 0
+        cursor.close()
+        db.close()
+        return exists
+    }
+
+    fun clientData(dni: String): List<Client> {
+        val db = this.readableDatabase
+        val query = "SELECT * FROM $TABLE_CLIENT WHERE $COLUMN_CLIENT_DNI = ?"
+        val cursor = db.rawQuery(query, arrayOf(dni))
+        val clients = mutableListOf<Client>()
+
         try {
-            exists = cursor.count > 0
+            if (cursor.moveToFirst()) {
+                do {
+                    val client = Client().apply {
+                        idClient = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CLIENT_ID))
+                        dniClient = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CLIENT_DNI))
+                        nameClient = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CLIENT_NAME))
+                        surnameClient = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CLIENT_SURNAME))
+                        emailClient = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CLIENT_EMAIL))
+                        essocioClient = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CLIENT_ESSOCIO)) == 1
+                        nroClient = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CLIENT_NROCLIENT))
+                    }
+                    clients.add(client)
+                } while (cursor.moveToNext())
+            }
         } finally {
             cursor.close()
             db.close()
         }
 
-        return exists
+        return clients
     }
 }

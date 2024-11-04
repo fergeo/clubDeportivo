@@ -7,6 +7,10 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class PayFee : AppCompatActivity() {
+
+    private lateinit var dbHelper: ClientDatabaseHelper
+    private lateinit var dbHelper1: FeeDatabaseHandler
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pay_fee)
