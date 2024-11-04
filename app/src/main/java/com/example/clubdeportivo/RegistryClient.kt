@@ -67,12 +67,10 @@ class RegistryClient : AppCompatActivity() {
 
                 val success = dbHelper.addClient(dni,name,surname,email,physicallyFit,essocio,nroClient)
 
-                //val willPrint = Intent(this, WillPrint::class.java)
-
-               // willPrint.putExtra("KEY_DNI", dni)
-                //willPrint.putExtra("KEY_NROCLIENT", nroClient)
-
-                //startActivity(willPrint)
+                val willPrint = Intent(this, WillPrint::class.java)
+                willPrint.putExtra("KEY_DNI", dni)
+                willPrint.putExtra("KEY_NROCLIENT", nroClient)
+                startActivity(willPrint)
 
             }
             else{

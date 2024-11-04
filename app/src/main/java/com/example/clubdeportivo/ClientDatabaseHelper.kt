@@ -10,7 +10,7 @@ class ClientDatabaseHelper (context:Context) :
 {
     companion object{
         private val DATABASE_NAME = "CLUBDEPORTIVO.db"
-        private val DATABASE_VERSION = 1
+        private val DATABASE_VERSION = 2
 
         private val TABLE_CLIENT = "Client"
         private val TABLE_CLIENT_ID = "idClient"
