@@ -12,13 +12,13 @@ class UserAdmDatabaseHelper(context: Context) :
     companion object {
         private const val DATABASE_NAME = "CLUBDEPORTIVO.db"
         private const val DATABASE_VERSION = 1
-        private const val TABLE_USER = "PaymentMethod"
+        private const val TABLE_PAYMENT_METHOD = "PaymentMethod"
         private const val COLUMN_PAYMENT_METHOD_ID = "idPaymentMethod"
         private const val COLUMN_PAYMENT_METHOD_NAME = "namePaymentMethod"
     }
 
     override fun onCreate(db: SQLiteDatabase) {
-        val createTableUser = ("CREATE TABLE $TABLE_USER ("
+        val createTableUser = ("CREATE TABLE $TABLE_PAYMENT_METHOD ("
                 + "$COLUMN_PAYMENT_METHOD_ID INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + "$COLUMN_PAYMENT_METHOD_NAME TEXT)")
 
@@ -26,7 +26,7 @@ class UserAdmDatabaseHelper(context: Context) :
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        db.execSQL("DROP TABLE IF EXISTS $TABLE_USER")
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_PAYMENT_METHOD")
         onCreate(db)
     }
 
@@ -35,13 +35,13 @@ class UserAdmDatabaseHelper(context: Context) :
         val values = ContentValues().apply {
             put(COLUMN_PAYMENT_METHOD_NAME, namePaymentMethod)
         }
-        return db.insert(TABLE_USER, null, values)
+        return db.insert(TABLE_PAYMENT_METHOD, null, values)
     }
 
     @SuppressLint("Range")
     fun allPaymentMethods(): List<String> {
         val db = this.readableDatabase
-        val query = "SELECT * FROM $TABLE_USER"
+        val query = "SELECT * FROM $TABLE_PAYMENT_METHOD"
         val cursor = db.rawQuery(query, null)
 
         val paymentMethods = mutableListOf<String>() // Lista para almacenar los métodos de pago

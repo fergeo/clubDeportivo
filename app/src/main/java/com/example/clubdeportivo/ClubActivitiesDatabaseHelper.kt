@@ -11,14 +11,14 @@ class ClubActivitiesDatabaseHelper(context: Context) :
     companion object {
         private const val DATABASE_NAME = "CLUBDEPORTIVO.db"
         private const val DATABASE_VERSION = 1
-        private const val TABLE_USER = "ClubActivities"
+        private const val TABLE_CLUBACTIVITY = "ClubActivities"
         private const val COLUMN_CLUBACTIVITY_ID = "idClubActivity"
         private const val COLUMN_CLUBACTIVITY_NAME = "nameClubActivity"
         private const val COLUMN_CLUBACTIVITY_COST = "costClubActivity"
     }
 
     override fun onCreate(db: SQLiteDatabase) {
-        val createTableUser = ("CREATE TABLE $TABLE_USER ("
+        val createTableUser = ("CREATE TABLE $TABLE_CLUBACTIVITY ("
                 + "$COLUMN_CLUBACTIVITY_ID INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + "$COLUMN_CLUBACTIVITY_NAME TEXT, "
                 + "$COLUMN_CLUBACTIVITY_COST TEXT)")
@@ -27,7 +27,7 @@ class ClubActivitiesDatabaseHelper(context: Context) :
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        db.execSQL("DROP TABLE IF EXISTS $TABLE_USER")
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_CLUBACTIVITY")
         onCreate(db)
     }
 
@@ -37,12 +37,12 @@ class ClubActivitiesDatabaseHelper(context: Context) :
             put(COLUMN_CLUBACTIVITY_NAME, nameClubActivity)
             put(COLUMN_CLUBACTIVITY_COST, costClubActivity)
         }
-        return db.insert(TABLE_USER, null, values)
+        return db.insert(TABLE_CLUBACTIVITY, null, values)
     }
 
     fun checkUser(nameClubActivity: String): Boolean {
         val db = this.readableDatabase
-        val query = "SELECT * FROM $TABLE_USER WHERE $COLUMN_CLUBACTIVITY_NAME = ?"
+        val query = "SELECT * FROM $TABLE_CLUBACTIVITY WHERE $COLUMN_CLUBACTIVITY_NAME = ?"
         val cursor = db.rawQuery(query, arrayOf(nameClubActivity))
 
         val exists = cursor.moveToFirst()
