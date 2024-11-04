@@ -40,15 +40,12 @@ class ClubActivitiesDatabaseHelper(context: Context) :
         return db.insert(TABLE_CLUBACTIVITY, null, values)
     }
 
-    fun checkUser(nameClubActivity: String): Boolean {
-        val db = this.readableDatabase
-        val query = "SELECT * FROM $TABLE_CLUBACTIVITY WHERE $COLUMN_CLUBACTIVITY_NAME = ?"
-        val cursor = db.rawQuery(query, arrayOf(nameClubActivity))
-
-        val exists = cursor.moveToFirst()
+    fun isTableEmpty(): Boolean {
+        val db = readableDatabase
+        val cursor = db.rawQuery("SELECT COUNT(*) FROM $TABLE_CLUBACTIVITY", null)
+        cursor.moveToFirst()
+        val count = cursor.getInt(0)
         cursor.close()
-        db.close()
-
-        return exists
+        return count == 0
     }
 }

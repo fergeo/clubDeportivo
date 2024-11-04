@@ -1,24 +1,43 @@
 package com.example.clubdeportivo
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.CheckBox
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+
 
 class RegistryClient : AppCompatActivity() {
 
     private lateinit var dbHelper: ClientDatabaseHelper
+    private var clientList = mutableListOf<Client>()
+    private lateinit var dbHelper1: ClubActivitiesDatabaseHelper
+    private lateinit var dbHelper2: FeeDatabaseHandler
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registry_client)
 
         dbHelper = ClientDatabaseHelper(this)
+        dbHelper1 = ClubActivitiesDatabaseHelper(this)
+        dbHelper2 = FeeDatabaseHandler(this)
+
+        //Cargi kas actuvudades que habra en el club
+        if(dbHelper1.isTableEmpty()){
+            var clumActivity = dbHelper1.addClubActivity("Musculación","150000")
+            clumActivity = dbHelper1.addClubActivity("Salsa","55000")
+            clumActivity = dbHelper1.addClubActivity("Basquetball","75000")
+        }
 
         val inputDni = findViewById<TextInputEditText>(R.id.input_dni)
         val inputName = findViewById<TextInputEditText>(R.id.input_name)
@@ -60,13 +79,31 @@ class RegistryClient : AppCompatActivity() {
                     val success = dbHelper.addClient(dni, name, surname, email, physicallyFit, essocio, nroClient)
 
                     if (success != -1L) { // Verifica si la inserción fue exitosa
+                        clientList = dbHelper.clientData(dni).toMutableList()
+
+                        var idClient = 0
+                        clientList.forEach { cliente ->
+                            idClient = cliente.idClient
+                        }
+
+                        val fechaActual = LocalDate.now()
+                        val formato = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+
                         if (essocio) {
+
+                            var fee = dbHelper2.addFee(idClient,3,fechaActual.format(formato))
+                            fee = dbHelper2.addFee(idClient,1,fechaActual.format(formato))
+                            fee = dbHelper2.addFee(idClient,2,fechaActual.format(formato))
+
                             val willPrint = Intent(this, WillPrint::class.java).apply {
                                 putExtra("KEY_DNI", dni)
                                 putExtra("KEY_NROCLIENT", nroClient)
                             }
                             startActivity(willPrint)
                         } else {
+                            val fechaActual = LocalDate.now()
+                            val formato = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+                            val fee = dbHelper2.addFee(idClient, 2, fechaActual.format(formato))
                             showAlertDialog("Usuario Registrado", "Se registró satisfactoriamente a $name $surname")
                             val registryClient = Intent(this, RegistryClient::class.java)
                             startActivity(registryClient)
