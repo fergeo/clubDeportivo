@@ -57,7 +57,7 @@
             android:layout_marginStart="20dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/input_paswword"
+                android:id="@+id/input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -93,7 +93,7 @@
             android:layout_marginStart="20dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextTextEmailAddress"
+                android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"

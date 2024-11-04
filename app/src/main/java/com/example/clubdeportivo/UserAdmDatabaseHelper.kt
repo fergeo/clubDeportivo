@@ -4,15 +4,13 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.app.AlertDialog
-
 
 class UserAdmDatabaseHelper (context:Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION)
 {
     companion object{
         private val DATABASE_NAME = "CLUBDEPORTIVO.db"
-        private val DATABASE_VERSION = 2
+        private val DATABASE_VERSION = 5
 
         private val TABLE_USER = "User"
         private val COLUMN_USER_ID = "idUser"
@@ -46,7 +44,7 @@ class UserAdmDatabaseHelper (context:Context) :
 
     fun checkUser(userName: String, passwordUser: String): Boolean {
         val db = this.readableDatabase
-        val query = "SELECT 1 FROM user WHERE emailUser = ? AND passwordUser = ?"
+        val query = "SELECT 1 FROM User WHERE emailUser = ? AND passwordUser = ?"
         val exists: Boolean
 
         val cursor = db.rawQuery(query, arrayOf(userName, passwordUser))

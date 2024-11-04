@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.widget.Button
 import com.google.android.material.textfield.TextInputEditText
+import androidx.appcompat.app.AlertDialog
 
 class Login : AppCompatActivity() {
 
@@ -16,9 +17,8 @@ class Login : AppCompatActivity() {
 
         dbHelper = UserAdmDatabaseHelper(this)
 
-        val email = findViewById<TextInputEditText>(R.id.editTextTextEmailAddress)
-        val password = findViewById<TextInputEditText>(R.id.input_paswword)
-
+        val email = findViewById<TextInputEditText>(R.id.input_email)
+        val password = findViewById<TextInputEditText>(R.id.input_password)
 
         // Verificar si el usuario administrador ya existe en la base de datos
         if (!dbHelper.checkUser("user@correo.com", "123456")) {
@@ -26,30 +26,23 @@ class Login : AppCompatActivity() {
         }
 
         // Configurar el listener del botón de entrada
-
-        //if (dbHelper.checkUser(email.text.toString(), password.text.toString())) {
-
         val btnEnter = findViewById<Button>(R.id.btn_enter)
         btnEnter.setOnClickListener {
-            val principalScreen = Intent(this, PrincipalScrreen::class.java)
-            startActivity(principalScreen)
-        /*    } else {
-                val builder = AlertDialog.Builder(this)  // Cambiado `Context` a `this`
-                builder.setTitle("Título de la alerta")
-                builder.setMessage("Usuario o contraseña incorrectos.")
+            val enteredEmail = email.text.toString()
+            val enteredPassword = password.text.toString()
 
-                // Botón de Aceptar
+            if (dbHelper.checkUser(enteredEmail, enteredPassword)) {
+                val principalScreen = Intent(this, PrincipalScreen::class.java)
+                startActivity(principalScreen)
+            } else {
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Error de inicio de sesión")
+                builder.setMessage("Usuario o contraseña incorrectos.")
                 builder.setPositiveButton("Aceptar") { dialog, _ ->
                     dialog.dismiss()
                 }
-
-                // Mostrar el diálogo
-                val alertDialog = builder.create()
-                alertDialog.show()
+                builder.create().show()
             }
-        */
         }
-
-
     }
 }

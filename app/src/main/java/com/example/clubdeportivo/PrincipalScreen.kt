@@ -6,7 +6,7 @@ import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 
-class PrincipalScrreen : AppCompatActivity() {
+class PrincipalScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -17,6 +17,13 @@ class PrincipalScrreen : AppCompatActivity() {
             val registryClient = Intent(this, RegistryClient::class.java)
             startActivity(registryClient)
         }
+
+        val btmLicense = findViewById<Button>(R.id.btn_license)
+        btmLicense.setOnClickListener {
+            val pintLicense = Intent(this, PrintLicense::class.java)
+            startActivity(pintLicense)
+        }
+
 
         val btnLogout = findViewById<Button>(R.id.btn_Logout)
         btnLogout.setOnClickListener {

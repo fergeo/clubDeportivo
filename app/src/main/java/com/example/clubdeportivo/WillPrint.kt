@@ -25,10 +25,10 @@ class WillPrint : AppCompatActivity() {
         lbl_nroSocio.text = "Nro. Pase: " + nroClient
 
         val btn_yes = findViewById<Button>(R.id.btn_yes)
-        //btn_yes.setOnClickListener {
-        //    val license = Intent(this, License::class.java)
-        //    startActivity(license)
-        //}
+        btn_yes.setOnClickListener {
+            val license = Intent(this, License::class.java)
+            startActivity(license)
+        }
 
         val btn_no = findViewById<Button>(R.id.btn_no)
         btn_no.setOnClickListener {

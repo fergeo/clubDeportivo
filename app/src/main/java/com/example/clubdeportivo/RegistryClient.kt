@@ -42,7 +42,7 @@ class RegistryClient : AppCompatActivity() {
 
         val btn_return = findViewById<Button>(R.id.btn_return)
         btn_return.setOnClickListener {
-            val principalScren = Intent(this, PrincipalScrreen::class.java)
+            val principalScren = Intent(this, PrincipalScreen::class.java)
             startActivity(principalScren)
         }
 
@@ -65,18 +65,35 @@ class RegistryClient : AppCompatActivity() {
                 else
                     nroClient = "NOSCIO"+dni
 
-                val success = dbHelper.addClient(dni,name,surname,email,physicallyFit,essocio,nroClient)
+                if(!dbHelper.searchClient(dni)){
+                    val success = dbHelper.addClient(dni,name,surname,email,physicallyFit,essocio,nroClient)
 
-                if(essocio){
-                    val willPrint = Intent(this, WillPrint::class.java)
-                    willPrint.putExtra("KEY_DNI", dni)
-                    willPrint.putExtra("KEY_NROCLIENT", nroClient)
-                    startActivity(willPrint)
+                    if(essocio){
+                        val willPrint = Intent(this, WillPrint::class.java)
+                        willPrint.putExtra("KEY_DNI", dni)
+                        willPrint.putExtra("KEY_NROCLIENT", nroClient)
+                        startActivity(willPrint)
+                    }
+                    else{
+                        val alertDialog = AlertDialog.Builder(this)
+                            .setTitle("Usuario Registrado")
+                            .setMessage("Se registro safisfactoriamente a " + name + " " + surname)
+                            .setPositiveButton("Aceptar") { dialog, which ->
+                                Toast.makeText(this, "Aceptado", Toast.LENGTH_SHORT).show()
+                            }
+                            .create()
+
+                        // Mostrar el AlertDialog
+                        alertDialog.show()
+
+                        val registryClient = Intent(this, RegistryClient::class.java)
+                        startActivity(registryClient)
+                    }
                 }
                 else{
                     val alertDialog = AlertDialog.Builder(this)
-                        .setTitle("Usuario Registrado")
-                        .setMessage("Se registro safisfactoriamente a " + name + " " + surname)
+                        .setTitle("Cliente Existente")
+                        .setMessage("El Cliente con deni: " + dni + " ya se encuentra registrado")
                         .setPositiveButton("Aceptar") { dialog, which ->
                             Toast.makeText(this, "Aceptado", Toast.LENGTH_SHORT).show()
                         }
@@ -84,9 +101,6 @@ class RegistryClient : AppCompatActivity() {
 
                     // Mostrar el AlertDialog
                     alertDialog.show()
-
-                    val registryClient = Intent(this, RegistryClient::class.java)
-                    startActivity(registryClient)
                 }
             }
             else{
