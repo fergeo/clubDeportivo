@@ -21,20 +21,20 @@ class RegistryClient : AppCompatActivity() {
 
         dbHelper = ClientDatabaseHelper(this)
 
-        var input_dni = findViewById<TextInputEditText>(R.id.input_dni)
-        var input_name = findViewById<TextInputEditText>(R.id.input_name)
-        var input_surname = findViewById<TextInputEditText>(R.id.input_surname)
-        var input_email = findViewById<TextInputEditText>(R.id.input_email)
+        var inputDni = findViewById<TextInputEditText>(R.id.input_dni)
+        var inputName = findViewById<TextInputEditText>(R.id.input_name)
+        var inputSurname = findViewById<TextInputEditText>(R.id.input_surname)
+        var inputEmail = findViewById<TextInputEditText>(R.id.input_email)
         val physicallyFitcheckBox = findViewById<CheckBox>(R.id.chk_apto_fisico)
         val essociocheckBox = findViewById<CheckBox>(R.id.chk_socio)
 
         val btn_clean = findViewById<Button>(R.id.btn_clean)
         btn_clean.setOnClickListener {
 
-            input_dni.setText("")
-            input_name.setText("")
-            input_surname.setText("")
-            input_email.setText("")
+            inputDni.setText("")
+            inputName.setText("")
+            inputSurname.setText("")
+            inputEmail.setText("")
             physicallyFitcheckBox.isChecked = false
             essociocheckBox.isChecked = false
 
@@ -53,10 +53,10 @@ class RegistryClient : AppCompatActivity() {
 
             if(physicallyFit){
 
-                val dni = input_dni.getText().toString();
-                val name = input_name.getText().toString();
-                val surname = input_surname.getText().toString();
-                val email = input_email.getText().toString();
+                val dni = inputDni.text.toString()
+                val name = inputName.text.toString()
+                val surname = inputSurname.text.toString()
+                val email = inputEmail.text.toString()
                 val essocio = essociocheckBox.isChecked
 
                 var nroClient = ""
@@ -67,11 +67,27 @@ class RegistryClient : AppCompatActivity() {
 
                 val success = dbHelper.addClient(dni,name,surname,email,physicallyFit,essocio,nroClient)
 
-                val willPrint = Intent(this, WillPrint::class.java)
-                willPrint.putExtra("KEY_DNI", dni)
-                willPrint.putExtra("KEY_NROCLIENT", nroClient)
-                startActivity(willPrint)
+                if(essocio){
+                    val willPrint = Intent(this, WillPrint::class.java)
+                    willPrint.putExtra("KEY_DNI", dni)
+                    willPrint.putExtra("KEY_NROCLIENT", nroClient)
+                    startActivity(willPrint)
+                }
+                else{
+                    val alertDialog = AlertDialog.Builder(this)
+                        .setTitle("Usuario Registrado")
+                        .setMessage("Se registro safisfactoriamente a " + name + " " + surname)
+                        .setPositiveButton("Aceptar") { dialog, which ->
+                            Toast.makeText(this, "Aceptado", Toast.LENGTH_SHORT).show()
+                        }
+                        .create()
 
+                    // Mostrar el AlertDialog
+                    alertDialog.show()
+
+                    val registryClient = Intent(this, RegistryClient::class.java)
+                    startActivity(registryClient)
+                }
             }
             else{
                 val alertDialog = AlertDialog.Builder(this)
