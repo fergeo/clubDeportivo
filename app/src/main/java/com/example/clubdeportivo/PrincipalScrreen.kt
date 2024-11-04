@@ -5,8 +5,6 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class PrincipalScrreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,9 +12,15 @@ class PrincipalScrreen : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_principal_scrreen)
 
+        val btm_register = findViewById<Button>(R.id.btm_register)
+        btm_register.setOnClickListener {
+            val registryClient = Intent(this, RegistryClient::class.java)
+            startActivity(registryClient)
+        }
+
         val btnLogout = findViewById<Button>(R.id.btn_Logout)
         btnLogout.setOnClickListener {
-            val principalScreen = Intent(this, MainActivity::class.java)
+            val principalScreen = Intent(this, Login::class.java)
             startActivity(principalScreen)
         }
     }

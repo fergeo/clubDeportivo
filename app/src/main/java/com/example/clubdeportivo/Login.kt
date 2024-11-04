@@ -5,15 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.widget.Button
 import com.google.android.material.textfield.TextInputEditText
-import android.app.AlertDialog
 
-class MainActivity : AppCompatActivity() {
+class Login : AppCompatActivity() {
 
     private lateinit var dbHelper: UserAdmDatabaseHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_login)
 
         dbHelper = UserAdmDatabaseHelper(this)
 
