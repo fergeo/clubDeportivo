@@ -1,0 +1,428 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/generalBack">
+
+    <TextView
+        android:id="@+id/lbl_title_list_fee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/listar_vencimientos"
+        android:textSize="40sp"
+        tools:ignore="TextContrastCheck" />
+
+    <!-- Area de Busqueda -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/areas">
+
+        <!-- Desde -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
+            android:background="@color/areas"
+            android:orientation="horizontal"
+            tools:ignore="TextSizeCheck">
+
+            <TextView
+                android:id="@+id/lbl_from"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_marginTop="-15dp"
+                android:text="@string/desde"
+                tools:ignore="VisualLintBounds" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="160dp"
+                android:layout_height="30dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/input_from"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:hint="@string/fecha_desde"
+                    tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <!-- Desde -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+
+            android:layout_marginEnd="20dp"
+            android:background="@color/areas"
+            android:orientation="horizontal"
+            tools:ignore="TextSizeCheck,VisualLintBounds">
+
+            <TextView
+                android:id="@+id/lbl_tp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_marginTop="-15dp"
+                android:text="@string/hasta"
+                tools:ignore="VisualLintBounds" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="160dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/input_tp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:hint="@string/fecha_desde"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_search"
+        android:layout_width="200dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/buttons"
+        android:text="@string/buscar"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        tools:ignore="HardcodedText,TextSizeCheck" />
+
+    <!-- Area de Listado -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/areas">
+
+        <!-- Area de Titulos -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/generalBack">
+
+            <TextView
+                android:id="@+id/lbl_title_fecVec"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/fec_vec"
+                android:textSize="15sp"
+                tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/lbl_title_dni"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/dni"
+                android:textSize="15sp"
+                tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/lbl_title_nombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:text="@string/nombre"
+                android:textSize="15sp"
+                tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/lbl_title_apellido"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="@string/apellido"
+                android:textSize="15sp"
+                tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/lbl_title_Monto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/monto"
+                android:textSize="15sp"
+                tools:ignore="TextContrastCheck" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/areas"
+            tools:ignore="VisualLintBounds">
+
+            <!-- Area de Listado -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:background="@color/generalBack">
+
+                <!-- Area de Registros -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:paddingTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@color/white">
+
+                    <TextView
+                        android:id="@+id/lbl_fecVec1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="5dp"
+                        android:text="@string/_10_09_2024" />
+
+                    <TextView
+                        android:id="@+id/lbl_dni1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="5dp"
+                        android:text="@string/_30145846" />
+
+                    <TextView
+                        android:id="@+id/lbl_nombre1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/juan" />
+
+                    <TextView
+                        android:id="@+id/lbl_apellido1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="30dp"
+                        android:text="@string/perez" />
+
+                    <TextView
+                        android:id="@+id/lbl_Monto1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="15dp"
+                        android:text="@string/_120000" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:paddingTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@color/white">
+
+                    <TextView
+                        android:id="@+id/lbl_fecVec2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="5dp"
+                        android:text="@string/date_10_09_2024" />
+
+                    <TextView
+                        android:id="@+id/lbl_dni2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="5dp"
+                        android:text="@string/date_30145846" />
+
+                    <TextView
+                        android:id="@+id/lbl_nombre2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/juan" />
+
+                    <TextView
+                        android:id="@+id/lbl_apellido2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="30dp"
+                        android:text="@string/perez" />
+
+                    <TextView
+                        android:id="@+id/lbl_Monto2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="15dp"
+                        android:text="@string/mount_120000" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:paddingTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@color/white">
+
+                    <TextView
+                        android:id="@+id/lbl_fecVec3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="5dp"
+                        android:text="@string/_10_09_2024" />
+
+                    <TextView
+                        android:id="@+id/lbl_dni3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="5dp"
+                        android:text="@string/dni_30145846" />
+
+                    <TextView
+                        android:id="@+id/lbl_nombre3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/juan" />
+
+                    <TextView
+                        android:id="@+id/lbl_apellido3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="30dp"
+                        android:text="@string/perez" />
+
+                    <TextView
+                        android:id="@+id/lbl_Monto3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="15dp"
+                        android:text="@string/monto_120000" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:paddingTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@color/white">
+
+                    <TextView
+                        android:id="@+id/lbl_fecVec4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="5dp"
+                        android:text="@string/date_10_09_2024" />
+
+                    <TextView
+                        android:id="@+id/lbl_dni4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="5dp"
+                        android:text="@string/dni_30145846" />
+
+                    <TextView
+                        android:id="@+id/lbl_nombre4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/juan" />
+
+                    <TextView
+                        android:id="@+id/lbl_apellido4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="30dp"
+                        android:text="@string/perez" />
+
+                    <TextView
+                        android:id="@+id/lbl_Monto4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginStart="15dp"
+                        android:text="@string/mount_120000" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_return"
+        android:layout_width="200dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/buttons"
+        android:text="@string/volver"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        tools:ignore="TextSizeCheck" />
+
+</LinearLayout>

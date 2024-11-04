@@ -10,7 +10,7 @@ class FeeDatabaseHandler(context: Context) :
 
     companion object {
         private const val DATABASE_NAME = "CLUBDEPORTIVO.db"
-        private const val DATABASE_VERSION = 5
+        private const val DATABASE_VERSION = 1
         private const val TABLE_USER = "Fee"
         private const val COLUMN_ID_FEE = "idFee"
         private const val COLUMN_FEE_ID_CLIENT = "idClientFee"

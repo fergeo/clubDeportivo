@@ -24,6 +24,20 @@ class PrincipalScreen : AppCompatActivity() {
             startActivity(pintLicense)
         }
 
+        val btmList = findViewById<Button>(R.id.btn_list)
+        btmList.setOnClickListener {
+            val pintLicense = Intent(this, ListFee::class.java)
+            startActivity(pintLicense)
+        }
+
+        /*
+        val btn_payment = findViewById<Button>(R.id.btn_payment)
+        btn_payment.setOnClickListener {
+            val payFee = Intent(this, PayFee::class.java)
+            startActivity(payFee)
+        }
+        * */
+
 
         val btnLogout = findViewById<Button>(R.id.btn_Logout)
         btnLogout.setOnClickListener {

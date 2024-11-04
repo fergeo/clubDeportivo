@@ -10,7 +10,7 @@ class ClubActivitiesDatabaseHelper(context: Context) :
 
     companion object {
         private const val DATABASE_NAME = "CLUBDEPORTIVO.db"
-        private const val DATABASE_VERSION = 5
+        private const val DATABASE_VERSION = 1
         private const val TABLE_USER = "ClubActivities"
         private const val COLUMN_CLUBACTIVITY_ID = "idClubActivity"
         private const val COLUMN_CLUBACTIVITY_NAME = "nameClubActivity"

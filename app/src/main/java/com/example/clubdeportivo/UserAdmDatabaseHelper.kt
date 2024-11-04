@@ -10,8 +10,7 @@ class UserAdmDatabaseHelper (context:Context) :
 {
     companion object{
         private val DATABASE_NAME = "CLUBDEPORTIVO.db"
-        private val DATABASE_VERSION = 5
-
+        private val DATABASE_VERSION = 1
         private val TABLE_USER = "User"
         private val COLUMN_USER_ID = "idUser"
         private val COLUMN_USER_EMAIL = "emailUser"

@@ -4,13 +4,14 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 
 class ClientDatabaseHelper(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object {
         const val DATABASE_NAME = "CLUBDEPORTIVO.db"
-        const val DATABASE_VERSION = 5
+        const val DATABASE_VERSION = 1
         const val TABLE_CLIENT = "Client"
         const val TABLE_CLIENT_ID = "idClient"
         const val TABLE_CLIENT_DNI = "dniClient"
@@ -34,6 +35,7 @@ class ClientDatabaseHelper(context: Context) :
                 + TABLE_CLIENT_NROCLIENT + " TEXT)")
 
         db.execSQL(createTableUser)
+        Log.d("ClientDatabaseHelper", "Tabla Client creada.")
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {

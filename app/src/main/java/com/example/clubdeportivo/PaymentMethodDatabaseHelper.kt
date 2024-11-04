@@ -11,8 +11,7 @@ class UserAdmDatabaseHelper(context: Context) :
 
     companion object {
         private const val DATABASE_NAME = "CLUBDEPORTIVO.db"
-        private const val DATABASE_VERSION = 5
-
+        private const val DATABASE_VERSION = 1
         private const val TABLE_USER = "PaymentMethod"
         private const val COLUMN_PAYMENT_METHOD_ID = "idPaymentMethod"
         private const val COLUMN_PAYMENT_METHOD_NAME = "namePaymentMethod"
