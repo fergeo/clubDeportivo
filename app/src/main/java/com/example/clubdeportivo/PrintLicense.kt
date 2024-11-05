@@ -11,13 +11,15 @@ import androidx.appcompat.app.AlertDialog
 
 class PrintLicense : AppCompatActivity() {
 
-    private lateinit var dbHelper: ClientDatabaseHelper
+    private lateinit var dbHelper: ClubDeportivoDatabaseHelper
+    //private lateinit var dbHelper: ClientDatabaseHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_print_license)
 
-        dbHelper = ClientDatabaseHelper(this)
+        dbHelper = ClubDeportivoDatabaseHelper(this)
+        //dbHelper = ClientDatabaseHelper(this)
 
         val inputDni = findViewById<TextInputEditText>(R.id.input_dni)
         val btnSearch = findViewById<Button>(R.id.btn_search)

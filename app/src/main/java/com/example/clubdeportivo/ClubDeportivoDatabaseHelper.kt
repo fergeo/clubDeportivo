@@ -108,7 +108,7 @@ class ClubDeportivoDatabaseHelper(context: Context) :
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER)
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CLIENT)
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CLUBACTIVITY)
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CLUBACTIVITY)
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_FEE)
         onCreate(db)
     }
 

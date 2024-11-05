@@ -12,7 +12,8 @@ import com.google.android.material.textfield.TextInputEditText
 
 class PayFee : AppCompatActivity() {
 
-    private lateinit var dbHelper: ClientDatabaseHelper
+    private lateinit var dbHelper: ClubDeportivoDatabaseHelper
+    //private lateinit var dbHelper: ClientDatabaseHelper
     private var clientList = mutableListOf<Client>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +23,8 @@ class PayFee : AppCompatActivity() {
         val btnSearch = findViewById<Button>(R.id.btn_search)
         btnSearch.setOnClickListener {
 
-            dbHelper = ClientDatabaseHelper(this)
+            dbHelper = ClubDeportivoDatabaseHelper(this)
+            //dbHelper = ClientDatabaseHelper(this)
 
             val dni = findViewById<TextInputEditText>(R.id.input_dni_search)
 

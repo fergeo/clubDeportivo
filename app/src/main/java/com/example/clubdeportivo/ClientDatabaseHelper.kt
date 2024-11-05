@@ -11,17 +11,17 @@ class ClientDatabaseHelper(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object {
-        private val DATABASE_NAME = "CLUBDEPORTIVO.db"
-        private val DATABASE_VERSION = 1
-        private val TABLE_CLIENT = "Client"
-        private val COLUMN_CLIENT_ID = "idClient"
-        private val COLUMN_CLIENT_DNI = "dniClient"
-        private val COLUMN_CLIENT_NAME = "nameClient"
-        private val COLUMN_CLIENT_SURNAME = "surnameClient"
-        private val COLUMN_CLIENT_EMAIL = "emailClient"
-        const val COLUMN_CLIENT_PHYSICALLYFIT = "physicallyfitClient"
-        private val COLUMN_CLIENT_ESSOCIO = "essocioClient"
-        private val COLUMN_CLIENT_NROCLIENT = "nroClient"
+        private const val DATABASE_NAME = "CLUBDEPORTIVO.db"
+        private const val DATABASE_VERSION = 1
+        private const val TABLE_CLIENT = "Client"
+        private const val COLUMN_CLIENT_ID = "idClient"
+        private const val COLUMN_CLIENT_DNI = "dniClient"
+        private const val COLUMN_CLIENT_NAME = "nameClient"
+        private const val COLUMN_CLIENT_SURNAME = "surnameClient"
+        private const val COLUMN_CLIENT_EMAIL = "emailClient"
+        private const val COLUMN_CLIENT_PHYSICALLYFIT = "physicallyfitClient"
+        private const val COLUMN_CLIENT_ESSOCIO = "essocioClient"
+        private const val COLUMN_CLIENT_NROCLIENT = "nroClient"
     }
 
     override fun onCreate(db: SQLiteDatabase) {

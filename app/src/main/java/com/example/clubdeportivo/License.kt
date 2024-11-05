@@ -1,5 +1,6 @@
 package com.example.clubdeportivo
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.ListView
 import android.widget.TextView
@@ -10,14 +11,17 @@ import androidx.core.view.WindowInsetsCompat
 
 class License : AppCompatActivity() {
 
-    private lateinit var dbHelper: ClientDatabaseHelper
+    private lateinit var dbHelper: ClubDeportivoDatabaseHelper
+    //private lateinit var dbHelper: ClientDatabaseHelper
     private var clientList = mutableListOf<Client>()
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_license)
 
-        dbHelper = ClientDatabaseHelper(this)
+        dbHelper = ClubDeportivoDatabaseHelper(this)
+        //dbHelper = ClientDatabaseHelper(this)
 
         val dni = intent.getStringExtra("KEY_DNI")
 
