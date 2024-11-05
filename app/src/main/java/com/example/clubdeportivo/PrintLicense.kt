@@ -23,10 +23,8 @@ class PrintLicense : AppCompatActivity() {
 
         val inputDni = findViewById<TextInputEditText>(R.id.input_dni)
         val btnSearch = findViewById<Button>(R.id.btn_search)
-
         btnSearch.setOnClickListener {
             val inputDniVal = inputDni.text.toString()
-
             if (dbHelper.searchClient(inputDniVal)) {
                 val license = Intent(this, License::class.java)
                 license.putExtra("KEY_DNI", inputDniVal)

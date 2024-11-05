@@ -1,7 +1,9 @@
 package com.example.clubdeportivo
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ListView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -30,20 +32,26 @@ class License : AppCompatActivity() {
 
             clientList.forEach { cliente ->
                 val lblNroSocio = findViewById<TextView>(R.id.lbl_nroSocio)
-                lblNroSocio.text = "Nro Ident.:" + cliente.nroClient
+                lblNroSocio?.text = "Nro Ident.: " + (cliente.nroClient ?: "")
 
                 val lblDni = findViewById<TextView>(R.id.lbl_dni)
-                lblDni.text = "D.N.I.:" + cliente.dniClient
+                lblDni?.text = "D.N.I.: " + (cliente.dniClient ?: "")
 
                 val lblName = findViewById<TextView>(R.id.lbl_name)
-                lblName.text = "Nombre:" + cliente.nameClient
+                lblName?.text = "Nombre: " + (cliente.nameClient ?: "")
 
                 val lblSurname = findViewById<TextView>(R.id.lbl_surname)
-                lblSurname.text = "Apellido:" + cliente.surnameClient
+                lblSurname?.text = "Apellido: " + (cliente.surnameClient ?: "")
 
                 val lbl_surname = findViewById<TextView>(R.id.lbl_email)
-                lbl_surname.text = "E-mail:" + cliente.emailClient
+                lbl_surname?.text = "E-mail: " + (cliente.emailClient ?: "")
             }
+        }
+
+        val btn_cancel = findViewById<Button>(R.id.btn_cancel)
+        btn_cancel.setOnClickListener {
+            val printLicense = Intent(this, PrintLicense::class.java)
+            startActivity(printLicense)
         }
     }
 }

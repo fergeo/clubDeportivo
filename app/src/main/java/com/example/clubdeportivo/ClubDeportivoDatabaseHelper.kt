@@ -141,33 +141,33 @@ class ClubDeportivoDatabaseHelper(context: Context) :
     }
 
 //Funciones para administracion de Clientes
-fun addClient(
-    dni: String,
-    name: String,
-    surname: String,
-    email: String,
-    physicallyfit: Boolean,
-    essocio: Boolean,
-    nroclient: String
-): Long {
-    val db = this.writableDatabase
-    val values = ContentValues().apply {
-        put(COLUMN_CLIENT_DNI, dni)
-        put(COLUMN_CLIENT_NAME, name)
-        put(COLUMN_CLIENT_SURNAME, surname)
-        put(COLUMN_CLIENT_EMAIL, email)
-        put(COLUMN_CLIENT_PHYSICALLYFIT, if (physicallyfit) 1 else 0)
-        put(COLUMN_CLIENT_ESSOCIO, if (essocio) 1 else 0)
-        put(COLUMN_CLIENT_NROCLIENT, nroclient)
+    fun addClient(
+        dni: String,
+        name: String,
+        surname: String,
+        email: String,
+        physicallyfit: Boolean,
+        essocio: Boolean,
+        nroclient: String
+    ): Long {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put(COLUMN_CLIENT_DNI, dni)
+            put(COLUMN_CLIENT_NAME, name)
+            put(COLUMN_CLIENT_SURNAME, surname)
+            put(COLUMN_CLIENT_EMAIL, email)
+            put(COLUMN_CLIENT_PHYSICALLYFIT, if (physicallyfit) 1 else 0)
+            put(COLUMN_CLIENT_ESSOCIO, if (essocio) 1 else 0)
+            put(COLUMN_CLIENT_NROCLIENT, nroclient)
+        }
+        val success = db.insert(TABLE_CLIENT, null, values)
+        db.close()
+        return success
     }
-    val success = db.insert(TABLE_CLIENT, null, values)
-    db.close()
-    return success
-}
 
     fun searchClient(dni: String): Boolean {
         val db = this.readableDatabase
-        val query = "SELECT * FROM ${TABLE_CLIENT} WHERE ${COLUMN_CLIENT_ID} = ?"
+        val query = "SELECT * FROM ${TABLE_CLIENT} WHERE ${COLUMN_CLIENT_DNI} = ? AND ${COLUMN_CLIENT_ESSOCIO} = 1"
         val cursor = db.rawQuery(query, arrayOf(dni))
         val exists = cursor.count > 0
         cursor.close()

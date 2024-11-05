@@ -112,12 +112,22 @@ class RegistryClient : AppCompatActivity() {
                         }
                     } else {
                         showAlertDialog("Error", "No se pudo registrar al usuario.")
+                        Thread.sleep(20000)
                     }
                 } else {
-                    showAlertDialog("Cliente Existente", "El Cliente con DNI: $dni ya se encuentra registrado")
+                    //showAlertDialog("Cliente Existente", "El Cliente con DNI: $dni ya se encuentra registrado")
+                    val builder = AlertDialog.Builder(this)
+                    builder.setTitle("Cliente existente")
+                    builder.setMessage("El Cliente con DNI: $dni ya se encuentra registrado")
+                    builder.setPositiveButton("Aceptar") { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    builder.create().show()
+                    Thread.sleep(20000)
                 }
             } else {
                 showAlertDialog("Falta Apto", "Faltó marcar si presenta Apto Físico.")
+                Thread.sleep(20000)
             }
         }
     }
