@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.example.clubdeportivo.ClientDatabaseHelper.Companion
 
 class UserAdmDatabaseHelper (context:Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION)
@@ -15,6 +16,7 @@ class UserAdmDatabaseHelper (context:Context) :
         private val COLUMN_USER_ID = "idUser"
         private val COLUMN_USER_EMAIL = "emailUser"
         private val COLUMN_USER_PASSWORD = "passwordUser"
+
     }
 
     override fun onCreate(db: SQLiteDatabase) {

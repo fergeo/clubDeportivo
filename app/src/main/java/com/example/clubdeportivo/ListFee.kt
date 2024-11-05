@@ -50,7 +50,8 @@ class ListFee : AppCompatActivity() {
             feeList.forEach { fee ->
 
                 var amount = 0
-                val idClientAnt = 0
+                var idClientAnt = 0
+                var lblNum = 0
                 clientList = dbHelper1.clientDataById(fee.idClientFee).toMutableList()
 
                 clientList.forEach { Client ->
@@ -60,11 +61,15 @@ class ListFee : AppCompatActivity() {
                             clubActivityList = dbHelper2.clubActivutyDataById(fee.idClientFee).toMutableList()
                             clubActivityList.forEach { clubActivity ->
                                 if(Client.essocioClient){
-                                    if(idClientAnt == Client.idClient){
-                                        amount += clubActivity.costClubActivity
-                                    }
+                                    amount += clubActivity.costClubActivity
                                 }
                             }
+                        }
+                        else{
+                            mustraDatos(lblNum, fee.limitDateFee.toString(), Client.dniClient.toString(), Client.nameClient.toString(), Client.surnameClient.toString(), amount.toString())
+                            lblNum++
+                            amount = 0
+                            idClientAnt = Client.idClient
                         }
                     }
                 }
@@ -77,5 +82,77 @@ class ListFee : AppCompatActivity() {
             val principalScren = Intent(this, PrincipalScreen::class.java)
             startActivity(principalScren)
         }
+    }
+
+    fun mustraDatos(lbl:Int, fecVec:String, dni:String, nombre:String, apellido:String, amount:String){
+
+        when (lbl) {
+            1 -> {
+                val lbl_fecVec1 = findViewById<TextView>(R.id.lbl_fecVec1)
+                lbl_fecVec1.text = fecVec
+
+                val lbl_dni1 = findViewById<TextView>(R.id.lbl_dni1)
+                lbl_dni1.text = dni
+
+                val lbl_nombre1 = findViewById<TextView>(R.id.lbl_nombre1)
+                lbl_nombre1.text = nombre
+
+                val lbl_apellido1 = findViewById<TextView>(R.id.lbl_apellido1)
+                lbl_apellido1.text = apellido
+
+                val lbl_Monto1 = findViewById<TextView>(R.id.lbl_Monto1)
+                lbl_Monto1.text = amount
+            }
+            2 -> {
+                val lbl_fecVec2 = findViewById<TextView>(R.id.lbl_fecVec2)
+                lbl_fecVec2.text = fecVec
+
+                val lbl_dni2 = findViewById<TextView>(R.id.lbl_dni2)
+                lbl_dni2.text = dni
+
+                val lbl_nombre2 = findViewById<TextView>(R.id.lbl_nombre2)
+                lbl_nombre2.text = nombre
+
+                val lbl_apellido2 = findViewById<TextView>(R.id.lbl_apellido2)
+                lbl_apellido2.text = apellido
+
+                val lbl_Monto2 = findViewById<TextView>(R.id.lbl_Monto2)
+                lbl_Monto2.text = amount
+            }
+            3 -> {
+                val lbl_fecVec3 = findViewById<TextView>(R.id.lbl_fecVec3)
+                lbl_fecVec3.text = fecVec
+
+                val lbl_dni3 = findViewById<TextView>(R.id.lbl_dni3)
+                lbl_dni3.text = dni
+
+                val lbl_nombre3 = findViewById<TextView>(R.id.lbl_nombre3)
+                lbl_nombre3.text = nombre
+
+                val lbl_apellido3 = findViewById<TextView>(R.id.lbl_apellido3)
+                lbl_apellido3.text = apellido
+
+                val lbl_Monto3 = findViewById<TextView>(R.id.lbl_Monto3)
+                lbl_Monto3.text = amount
+            }
+            4 -> {
+                val lbl_fecVec4 = findViewById<TextView>(R.id.lbl_fecVec4)
+                lbl_fecVec4.text = fecVec
+
+                val lbl_dni4 = findViewById<TextView>(R.id.lbl_dni4)
+                lbl_dni4.text = dni
+
+                val lbl_nombre4 = findViewById<TextView>(R.id.lbl_nombre4)
+                lbl_nombre4.text = nombre
+
+                val lbl_apellido4 = findViewById<TextView>(R.id.lbl_apellido4)
+                lbl_apellido4.text = apellido
+
+                val lbl_Monto4 = findViewById<TextView>(R.id.lbl_Monto4)
+                lbl_Monto4.text = amount
+            }
+        }
+
+
     }
 }
