@@ -27,31 +27,24 @@ class PayFee : AppCompatActivity() {
             dbHelper = ClubDeportivoDatabaseHelper(this)
             //dbHelper = ClientDatabaseHelper(this)
 
-            val dni = findViewById<TextInputEditText>(R.id.input_dni_searchP)
-            var dniSearch = dni.text.toString()
-
-            if (dniSearch != null) {
-                clientList = dbHelper.clientData(dniSearch).toMutableList()
-
-                if (!clientList.isEmpty()) {
-                    clientList.forEach { cliente ->
-                        val chargeFee = Intent(this, ChargeFee::class.java).apply {
-                            putExtra("KEY_IDCLIENT", cliente.idClient)
-                        }
-                        startActivity(chargeFee)
-                    }
-                } else {
-                    val builder = AlertDialog.Builder(this)
-                    builder.setTitle("Cliente Inexistente")
-                    builder.setMessage("El dni " + dni + " no corresponde a un cliente")
-                    builder.setPositiveButton("Aceptar") { dialog, _ ->
-                        dialog.dismiss()
-                    }
-                    builder.create().show()
+            val inputDni = findViewById<TextInputEditText>(R.id.input_dni_searchP)
+            val inputDniVal = inputDni.text.toString()
+            if (dbHelper.searchClient(inputDniVal)) {
+                val chargeFee = Intent(this, ChargeFee::class.java).apply {
+                    putExtra("KEY_DNICLIENT", inputDniVal)
                 }
-
-
+                startActivity(chargeFee)
             }
+            else {
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Cliente Inexistente")
+                builder.setMessage("El dni " + inputDniVal + " no corresponde a un cliente")
+                builder.setPositiveButton("Aceptar") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                builder.create().show()
+            }
+
         }
 
         val btnReturn = findViewById<Button>(R.id.btn_return)
@@ -59,5 +52,6 @@ class PayFee : AppCompatActivity() {
             val principalScreen = Intent(this, PrincipalScreen::class.java)
             startActivity(principalScreen)
         }
+
     }
 }

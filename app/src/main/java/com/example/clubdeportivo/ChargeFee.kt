@@ -7,17 +7,23 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
 class ChargeFee : AppCompatActivity() {
 
+    private lateinit var dbHelper: ClubDeportivoDatabaseHelper
     // Variables para almacenar las selecciones
     var formaPagoSeleccionada: String? = null
     var feeSeleccionado: Int? = null
+    private var clientList = mutableListOf<Client>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_charge_fee)
+
+        dbHelper = ClubDeportivoDatabaseHelper(this)
 
         // Configuración del Spinner de formas de pago
         val spinnerfP: Spinner = findViewById(R.id.listView_pay_way)
@@ -32,6 +38,35 @@ class ChargeFee : AppCompatActivity() {
         val adapterC = ArrayAdapter(this, android.R.layout.simple_spinner_item, feeList)
         adapterC.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerC.adapter = adapterC
+
+        val dniSearch = intent.getStringExtra  ("KEY_DNICLIENT")
+
+        if (dniSearch != null) {
+            clientList = dbHelper.clientData(dniSearch).toMutableList()
+
+            clientList.forEach { cliente ->
+                val lblNroSocio = findViewById<TextView>(R.id.lbl_numberCC)
+                lblNroSocio?.text = "Nro Ident.: " + (cliente.nroClient ?: "")
+
+                val lblDni = findViewById<TextView>(R.id.lbl_dniCC)
+                lblDni?.text = "D.N.I.: " + (cliente.dniClient ?: "")
+
+                val lblName = findViewById<TextView>(R.id.lbl_nameCC)
+                lblName?.text = "Nombre: " + (cliente.nameClient ?: "")
+
+                val lblSurname = findViewById<TextView>(R.id.lbl_surnameCC)
+                lblSurname?.text = "Apellido: " + (cliente.surnameClient ?: "")
+            }
+        }
+        else{
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Lista vacia de Cliente")
+            builder.setMessage("Lista vacia de Cliente.")
+            builder.setPositiveButton("Aceptar") { dialog, _ ->
+                dialog.dismiss()
+            }
+            builder.create().show()
+        }
 
         // Manejo del botón de pago
         val btn_pay = findViewById<Button>(R.id.btn_pay)
