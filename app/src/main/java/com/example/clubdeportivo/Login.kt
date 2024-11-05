@@ -9,13 +9,13 @@ import androidx.appcompat.app.AlertDialog
 
 class Login : AppCompatActivity() {
 
-    private lateinit var dbHelper: UserAdmDatabaseHelper
+    private lateinit var dbHelper: ClubDeportivoDatabaseHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        dbHelper = UserAdmDatabaseHelper(this)
+        dbHelper = ClubDeportivoDatabaseHelper(this)
 
         val email = findViewById<TextInputEditText>(R.id.input_email)
         val password = findViewById<TextInputEditText>(R.id.input_password)

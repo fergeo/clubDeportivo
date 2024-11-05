@@ -4,31 +4,17 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import com.example.clubdeportivo.ClientDatabaseHelper.Companion.COLUMN_CLIENT_DNI
-import com.example.clubdeportivo.ClientDatabaseHelper.Companion.COLUMN_CLIENT_EMAIL
-import com.example.clubdeportivo.ClientDatabaseHelper.Companion.COLUMN_CLIENT_ESSOCIO
-import com.example.clubdeportivo.ClientDatabaseHelper.Companion.COLUMN_CLIENT_ID
-import com.example.clubdeportivo.ClientDatabaseHelper.Companion.COLUMN_CLIENT_NAME
-import com.example.clubdeportivo.ClientDatabaseHelper.Companion.COLUMN_CLIENT_NROCLIENT
-import com.example.clubdeportivo.ClientDatabaseHelper.Companion.COLUMN_CLIENT_SURNAME
-import com.example.clubdeportivo.ClientDatabaseHelper.Companion.TABLE_CLIENT
-
-class ClubActivity {
-    var clubActityId: Int = 0
-    var nameClibActivity: String? = null
-    var costClubActivity: Int? = 0
-}
 
 class ClubActivitiesDatabaseHelper(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object {
-        private const val DATABASE_NAME = "CLUBDEPORTIVO.db"
-        private const val DATABASE_VERSION = 1
-        private const val TABLE_CLUBACTIVITY = "ClubActivities"
-        private const val COLUMN_CLUBACTIVITY_ID = "idClubActivity"
-        private const val COLUMN_CLUBACTIVITY_NAME = "nameClubActivity"
-        private const val COLUMN_CLUBACTIVITY_COST = "costClubActivity"
+        private val DATABASE_NAME = "CLUBDEPORTIVO.db"
+        private val DATABASE_VERSION = 1
+        private val TABLE_CLUBACTIVITY = "ClubActivities"
+        private val COLUMN_CLUBACTIVITY_ID = "idClubActivity"
+        private val COLUMN_CLUBACTIVITY_NAME = "nameClubActivity"
+        private val COLUMN_CLUBACTIVITY_COST = "costClubActivity"
     }
 
     override fun onCreate(db: SQLiteDatabase) {
@@ -65,7 +51,7 @@ class ClubActivitiesDatabaseHelper(context: Context) :
 
     fun clubActivutyDataById(paramIdClubActivity: Int): List<ClubActivity> {
         val db = this.readableDatabase
-        val query = "SELECT * FROM $TABLE_CLIENT WHERE $COLUMN_CLUBACTIVITY_ID = ?"
+        val query = "SELECT * FROM $TABLE_CLUBACTIVITY WHERE $COLUMN_CLUBACTIVITY_ID = ?"
         val cursor = db.rawQuery(query, arrayOf(paramIdClubActivity.toString()))
         val clubActivityList = mutableListOf<ClubActivity>()
 
@@ -73,7 +59,7 @@ class ClubActivitiesDatabaseHelper(context: Context) :
             if (cursor.moveToFirst()) {
                 do {
                     val clubActivity = ClubActivity().apply {
-                        clubActityId = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CLIENT_ID))
+                        clubActityId = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CLUBACTIVITY_ID))
                         nameClibActivity = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CLUBACTIVITY_NAME))
                         costClubActivity = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CLUBACTIVITY_COST))
                     }

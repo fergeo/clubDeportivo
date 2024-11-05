@@ -6,27 +6,18 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.hardware.camera2.CameraExtensionSession.StillCaptureLatency
 
-
-class Fee {
-    var idFee: Int = 0
-    var idClientFee: Int = 0
-    var clubAcivityIdFee: Int = 0
-    var limitDateFee: String? = null
-    var stateFee: Int = 0
-}
-
 class FeeDatabaseHandler(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object {
-        private const val DATABASE_NAME = "CLUBDEPORTIVO.db"
-        private const val DATABASE_VERSION = 1
-        private const val TABLE_FEE = "Fee"
-        private const val COLUMN_ID_FEE = "idFee"
-        private const val COLUMN_FEE_ID_CLIENT = "idClientFee"
-        private const val COLUMN_FEE_CLUB_ACTIVITY_ID = "clubActicityIdFee"
-        private const val COLUMN_FEE_LIMIT_DATE = "limitDateFee"
-        private const val COLUMN_FEE_STATE = "stateFee"
+        private val DATABASE_NAME = "CLUBDEPORTIVO.db"
+        private val DATABASE_VERSION = 1
+        private val TABLE_FEE = "Fee"
+        private val COLUMN_ID_FEE = "idFee"
+        private val COLUMN_FEE_ID_CLIENT = "idClientFee"
+        private val COLUMN_FEE_CLUB_ACTIVITY_ID = "clubActicityIdFee"
+        private val COLUMN_FEE_LIMIT_DATE = "limitDateFee"
+        private val COLUMN_FEE_STATE = "stateFee"
     }
 
     override fun onCreate(db: SQLiteDatabase) {
