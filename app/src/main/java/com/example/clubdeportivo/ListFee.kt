@@ -65,8 +65,6 @@ class ListFee : AppCompatActivity() {
                                     }
                                 }
                             }
-
-                            amount = amount + fee.
                         }
                     }
                 }
