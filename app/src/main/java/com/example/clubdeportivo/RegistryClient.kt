@@ -100,6 +100,7 @@ class RegistryClient : AppCompatActivity() {
                             val willPrint = Intent(this, WillPrint::class.java).apply {
                                 putExtra("KEY_DNI", dni)
                                 putExtra("KEY_NROCLIENT", nroClient)
+                                putExtra("KEY_PANTALLA", "REGISTRY")
                             }
                             startActivity(willPrint)
                         } else {

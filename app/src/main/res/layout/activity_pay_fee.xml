@@ -26,7 +26,6 @@
         tools:ignore="TextContrastCheck" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input_dni_search"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginStart="30dp"
@@ -34,6 +33,7 @@
         android:background="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_dni_search"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:hint="@string/dni"

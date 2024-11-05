@@ -28,6 +28,7 @@ class PrintLicense : AppCompatActivity() {
             if (dbHelper.searchClient(inputDniVal)) {
                 val license = Intent(this, License::class.java)
                 license.putExtra("KEY_DNI", inputDniVal)
+                license.putExtra("KEY_PANTALLA", "PRINT")
                 startActivity(license)
             } else {
                 val builder = AlertDialog.Builder(this)

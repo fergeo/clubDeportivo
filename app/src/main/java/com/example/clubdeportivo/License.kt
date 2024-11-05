@@ -50,8 +50,21 @@ class License : AppCompatActivity() {
 
         val btn_cancel = findViewById<Button>(R.id.btn_cancel)
         btn_cancel.setOnClickListener {
-            val printLicense = Intent(this, PrintLicense::class.java)
-            startActivity(printLicense)
+
+            val pantalla = intent.getStringExtra("KEY_PANTALLA")
+
+            if(pantalla == "REGISTRY"){
+                val registryClient = Intent(this, RegistryClient::class.java)
+                startActivity(registryClient)
+            }
+            else if(pantalla == "PRINT"){
+                val printLicense = Intent(this, PrintLicense::class.java)
+                startActivity(printLicense)
+            }
+            else{
+                val printLicense = Intent(this, PrintLicense::class.java)
+                startActivity(printLicense)
+            }
         }
     }
 }

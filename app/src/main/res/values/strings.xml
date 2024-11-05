@@ -33,7 +33,7 @@
     <string name="hasta">Hasta:</string>
     <string name="buscar">Buscar</string>
     <string name="fec_vec">Fec. Vec.</string>
-    <string name="dni">DNI.</string>
+    <string name="dni">D.N.I.</string>
     <string name="nombre">Nombre</string>
     <string name="apellido">Apellido</string>
     <string name="_30145846">30145846</string>
@@ -61,7 +61,7 @@
     <string name="socio">Socio</string>
     <string name="limpiar">Limpiar</string>
     <string name="aceptar">Aceptar</string>
-    <string name="dni_3015486">DNI; 3015486</string>
+    <string name="dni_3015486">DNI: 3015486</string>
     <string name="imprimir_carnet_ask">Imprimir Carnet?</string>
     <string name="si">SI</string>
     <string name="no">NO</string>
