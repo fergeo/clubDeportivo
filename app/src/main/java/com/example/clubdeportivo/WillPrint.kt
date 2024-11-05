@@ -16,7 +16,7 @@ class WillPrint : AppCompatActivity() {
 
         val willPrint = Intent(this, WillPrint::class.java)
 
-        val dni = intent.getStringExtra("KEY_DNI")
+        var dni = intent.getStringExtra("KEY_DNI")
         val nroClient = intent.getStringExtra("KEY_NROCLIENT")
 
         lbl_dni.text = "DNI: " + dni
@@ -24,7 +24,9 @@ class WillPrint : AppCompatActivity() {
 
         val btn_yes = findViewById<Button>(R.id.btn_yes)
         btn_yes.setOnClickListener {
-            val license = Intent(this, License::class.java)
+            val license = Intent(this, License::class.java).apply {
+                putExtra("KEY_DNI", dni)
+            }
             startActivity(license)
         }
 

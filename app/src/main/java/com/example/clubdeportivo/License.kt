@@ -37,10 +37,10 @@ class License : AppCompatActivity() {
                 val lblDni = findViewById<TextView>(R.id.lbl_dni)
                 lblDni?.text = "D.N.I.: " + (cliente.dniClient ?: "")
 
-                val lblName = findViewById<TextView>(R.id.lbl_name)
+                val lblName = findViewById<TextView>(R.id.lbl_nombreL)
                 lblName?.text = "Nombre: " + (cliente.nameClient ?: "")
 
-                val lblSurname = findViewById<TextView>(R.id.lbl_surname)
+                val lblSurname = findViewById<TextView>(R.id.lbl_apellidoL)
                 lblSurname?.text = "Apellido: " + (cliente.surnameClient ?: "")
 
                 val lbl_surname = findViewById<TextView>(R.id.lbl_email)

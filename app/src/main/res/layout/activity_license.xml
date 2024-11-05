@@ -35,7 +35,7 @@
             android:textSize="30sp" />
 
         <TextView
-            android:id="@+id/lbl_nombre"
+            android:id="@+id/lbl_nombreL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -44,7 +44,7 @@
             android:textSize="30sp" />
 
         <TextView
-            android:id="@+id/lbl_apellido"
+            android:id="@+id/lbl_apellidoL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
