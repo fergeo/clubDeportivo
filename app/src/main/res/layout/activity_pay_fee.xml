@@ -33,9 +33,9 @@
         android:background="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/input_dni_search"
+            android:id="@+id/input_dni_searchP"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="80dp"
             android:hint="@string/dni"
             android:textSize="30sp"
             tools:ignore="DuplicateSpeakableTextCheck,VisualLintTextFieldSize" />

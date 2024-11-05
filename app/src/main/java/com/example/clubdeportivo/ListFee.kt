@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.Nullable
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -53,30 +54,42 @@ class ListFee : AppCompatActivity() {
 
             feeList.forEach { fee ->
 
-                var amount = 0
-                var idClientAnt = 0
-                var lblNum = 0
-                clientList = dbHelper.clientDataById(fee.idClientFee).toMutableList()
+                if(fee.idClientFee != null){
+                    var amount = 0
+                    var idClientAnt = 0
+                    var lblNum = 0
+                    clientList = dbHelper.clientDataById(fee.idClientFee).toMutableList()
 
-                clientList.forEach { Client ->
-                    if(Client.essocioClient){
-                        if(idClientAnt == Client.idClient){
+                    clientList.forEach { Client ->
+                        if(Client.essocioClient){
+                            if(idClientAnt == Client.idClient){
 
-                            clubActivityList = dbHelper.clubActivutyDataById(fee.idClientFee).toMutableList()
-                            clubActivityList.forEach { clubActivity ->
-                                if(Client.essocioClient){
-                                    amount += clubActivity.costClubActivity
+                                clubActivityList = dbHelper.clubActivutyDataById(fee.idClientFee).toMutableList()
+                                clubActivityList.forEach { clubActivity ->
+                                    if(Client.essocioClient){
+                                        amount += clubActivity.costClubActivity
+                                    }
                                 }
+                            }
+                            else{
+                                mustraDatos(lblNum, fee.limitDateFee.toString(), Client.dniClient.toString(), Client.nameClient.toString(), Client.surnameClient.toString(), amount.toString())
+                                lblNum++
+                                amount = 0
+                                idClientAnt = Client.idClient
                             }
                         }
                         else{
-                            mustraDatos(lblNum, fee.limitDateFee.toString(), Client.dniClient.toString(), Client.nameClient.toString(), Client.surnameClient.toString(), amount.toString())
-                            lblNum++
-                            amount = 0
-                            idClientAnt = Client.idClient
+                            val builder = AlertDialog.Builder(this)
+                            builder.setTitle("Lista vacia")
+                            builder.setMessage("No se encontraron socio con cuotas pendiente de pago.")
+                            builder.setPositiveButton("Aceptar") { dialog, _ ->
+                                dialog.dismiss()
+                            }
+                            builder.create().show()
                         }
                     }
                 }
+
             }
 
         }

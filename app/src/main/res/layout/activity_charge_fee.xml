@@ -274,12 +274,12 @@
                 android:textSize="20sp"
                 android:text="@string/forma_de_pago"/>
 
-            <ListView
+
+            <Spinner
                 android:id="@+id/listView_pay_way"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:background="@color/white"/>
-
         </LinearLayout>
 
         <!-- Cuotas -->
@@ -300,7 +300,7 @@
                 android:textSize="20sp"
                 android:text="@string/cuota"/>
 
-            <ListView
+            <Spinner
                 android:id="@+id/listView_fee"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
