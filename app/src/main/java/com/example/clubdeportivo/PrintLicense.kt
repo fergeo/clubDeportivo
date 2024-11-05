@@ -50,5 +50,11 @@ class PrintLicense : AppCompatActivity() {
             )
             insets
         }
+
+        val btnReturn = findViewById<Button>(R.id.btn_return)
+        btnReturn.setOnClickListener {
+            val principalScreen = Intent(this, PrincipalScreen::class.java)
+            startActivity(principalScreen)
+        }
     }
 }

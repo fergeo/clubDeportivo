@@ -34,9 +34,9 @@ class RegistryClient : AppCompatActivity() {
 
         //Cargi kas actuvudades que habra en el club
         if(dbHelper1.isTableEmpty()){
-            var clumActivity = dbHelper1.addClubActivity("Musculación","150000")
-            clumActivity = dbHelper1.addClubActivity("Salsa","55000")
-            clumActivity = dbHelper1.addClubActivity("Basquetball","75000")
+            var clumActivity = dbHelper1.addClubActivity("Musculación",150000)
+            clumActivity = dbHelper1.addClubActivity("Salsa",55000)
+            clumActivity = dbHelper1.addClubActivity("Basquetball",75000)
         }
 
         val inputDni = findViewById<TextInputEditText>(R.id.input_dni)

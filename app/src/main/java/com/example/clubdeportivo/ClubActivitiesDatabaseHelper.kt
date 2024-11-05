@@ -4,6 +4,20 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.example.clubdeportivo.ClientDatabaseHelper.Companion.COLUMN_CLIENT_DNI
+import com.example.clubdeportivo.ClientDatabaseHelper.Companion.COLUMN_CLIENT_EMAIL
+import com.example.clubdeportivo.ClientDatabaseHelper.Companion.COLUMN_CLIENT_ESSOCIO
+import com.example.clubdeportivo.ClientDatabaseHelper.Companion.COLUMN_CLIENT_ID
+import com.example.clubdeportivo.ClientDatabaseHelper.Companion.COLUMN_CLIENT_NAME
+import com.example.clubdeportivo.ClientDatabaseHelper.Companion.COLUMN_CLIENT_NROCLIENT
+import com.example.clubdeportivo.ClientDatabaseHelper.Companion.COLUMN_CLIENT_SURNAME
+import com.example.clubdeportivo.ClientDatabaseHelper.Companion.TABLE_CLIENT
+
+class ClubActivity {
+    var clubActityId: Int = 0
+    var nameClibActivity: String? = null
+    var costClubActivity: Int? = 0
+}
 
 class ClubActivitiesDatabaseHelper(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
@@ -21,7 +35,7 @@ class ClubActivitiesDatabaseHelper(context: Context) :
         val createTableUser = ("CREATE TABLE $TABLE_CLUBACTIVITY ("
                 + "$COLUMN_CLUBACTIVITY_ID INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + "$COLUMN_CLUBACTIVITY_NAME TEXT, "
-                + "$COLUMN_CLUBACTIVITY_COST TEXT)")
+                + "$COLUMN_CLUBACTIVITY_COST INTEGER)")
 
         db.execSQL(createTableUser)
     }
@@ -31,7 +45,7 @@ class ClubActivitiesDatabaseHelper(context: Context) :
         onCreate(db)
     }
 
-    fun addClubActivity(nameClubActivity: String, costClubActivity: String): Long {
+    fun addClubActivity(nameClubActivity: String, costClubActivity: Int): Long {
         val db = this.writableDatabase
         val values = ContentValues().apply {
             put(COLUMN_CLUBACTIVITY_NAME, nameClubActivity)
@@ -47,5 +61,30 @@ class ClubActivitiesDatabaseHelper(context: Context) :
         val count = cursor.getInt(0)
         cursor.close()
         return count == 0
+    }
+
+    fun clubActivutyDataById(paramIdClubActivity: Int): List<ClubActivity> {
+        val db = this.readableDatabase
+        val query = "SELECT * FROM $TABLE_CLIENT WHERE $COLUMN_CLUBACTIVITY_ID = ?"
+        val cursor = db.rawQuery(query, arrayOf(paramIdClubActivity.toString()))
+        val clubActivityList = mutableListOf<ClubActivity>()
+
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    val clubActivity = ClubActivity().apply {
+                        clubActityId = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CLIENT_ID))
+                        nameClibActivity = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CLUBACTIVITY_NAME))
+                        costClubActivity = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CLUBACTIVITY_COST))
+                    }
+                    clubActivityList.add(clubActivity)
+                } while (cursor.moveToNext())
+            }
+        } finally {
+            cursor.close()
+            db.close()
+        }
+
+        return clubActivityList
     }
 }

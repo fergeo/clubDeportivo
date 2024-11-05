@@ -86,6 +86,32 @@ class FeeDatabaseHandler(context: Context) :
         return fees
     }
 
+    fun listFeeData(dateFrom: String,dateTo:String): List<Fee> { // Corrección del tipo a Int
+        val db = this.readableDatabase
+        val query = "SELECT * FROM $TABLE_FEE WHERE $COLUMN_FEE_ID_CLIENT BETWEEN ? AND ?"
+        val cursor = db.rawQuery(query, arrayOf(dateFrom, dateTo))
+        val fees = mutableListOf<Fee>()
+
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    val fee = Fee().apply {
+                        idFee = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID_FEE))
+                        this.idClientFee = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_FEE_ID_CLIENT))
+                        clubAcivityIdFee = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_FEE_CLUB_ACTIVITY_ID))
+                        limitDateFee = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_FEE_LIMIT_DATE))
+                        stateFee = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_FEE_STATE))
+                    }
+                    fees.add(fee)
+                } while (cursor.moveToNext())
+            }
+        } finally {
+            cursor.close()
+            db.close()
+        }
+        return fees
+    }
+
     fun changeStateFee(idClientFee: Int): Int {
         val db = writableDatabase
         val contentValues = ContentValues().apply {
