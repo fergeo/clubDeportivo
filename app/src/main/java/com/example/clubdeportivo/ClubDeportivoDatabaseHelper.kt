@@ -206,12 +206,41 @@ class ClubDeportivoDatabaseHelper(context: Context) :
 
     fun searchClient(dni: String): Boolean {
         val db = this.readableDatabase
-        val query = "SELECT * FROM ${TABLE_CLIENT} WHERE ${COLUMN_CLIENT_DNI} = ? AND ${COLUMN_CLIENT_ESSOCIO} = 1"
+        val query = "SELECT * FROM ${TABLE_CLIENT} WHERE ${COLUMN_CLIENT_DNI} = ?"
         val cursor = db.rawQuery(query, arrayOf(dni))
         val exists = cursor.count > 0
         cursor.close()
         db.close()
         return exists
+    }
+
+    fun listarSocios(): List<Client> {
+        val db = this.readableDatabase
+        val query = "SELECT * FROM ${TABLE_CLIENT} WHERE ${COLUMN_CLIENT_ESSOCIO} = 1"
+        val cursor = db.rawQuery(query, null)
+        val clients = mutableListOf<Client>()
+
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    val client = Client().apply {
+                        this.idClient = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CLIENT_ID))
+                        this.dniClient = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CLIENT_DNI))
+                        this.nameClient = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CLIENT_NAME))
+                        this.surnameClient = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CLIENT_SURNAME))
+                        this.emailClient = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CLIENT_EMAIL))
+                        this.essocioClient = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CLIENT_ESSOCIO))
+                        this.nroClient = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CLIENT_NROCLIENT))
+                    }
+                    clients.add(client)
+                } while (cursor.moveToNext())
+            }
+        } finally {
+            cursor.close()
+            db.close()
+        }
+
+        return clients
     }
 
     fun clientData(dni: String): List<Client> {

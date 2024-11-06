@@ -157,7 +157,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:text="@string/salsa"
+                    android:text=""
                     android:textSize="20sp" />
 
                 <TextView
@@ -165,7 +165,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="190dp"
-                    android:text="@string/mouint_65000"
+                    android:text=""
                     android:textSize="20sp" />
 
             </LinearLayout>
@@ -185,7 +185,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:text="@string/zumba"
+                    android:text=""
                     android:textSize="20sp" />
 
                 <TextView
@@ -193,7 +193,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="175dp"
-                    android:text="@string/mouint_65000"
+                    android:text=""
                     android:textSize="20sp" />
 
             </LinearLayout>
@@ -213,7 +213,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:text="@string/musculaci_n"
+                    android:text=""
                     android:textSize="20sp" />
 
                 <TextView
@@ -221,7 +221,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="125dp"
-                    android:text="@string/mount_80000"
+                    android:text=""
                     android:textSize="20sp" />
 
             </LinearLayout>
@@ -251,7 +251,7 @@
                     android:layout_width="160dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="190dp"
-                    android:text="@string/total_210000"
+                    android:text=""
                     android:textSize="20sp"
                     tools:ignore="TextSizeCheck,VisualLintBounds" />
 

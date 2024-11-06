@@ -24,6 +24,7 @@ class RegistryClient : AppCompatActivity() {
     //private lateinit var dbHelper1: ClubActivitiesDatabaseHelper
     //private lateinit var dbHelper2: FeeDatabaseHandler
 
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,13 +35,6 @@ class RegistryClient : AppCompatActivity() {
         //dbHelper1 = ClubActivitiesDatabaseHelper(this)
         //dbHelper2 = FeeDatabaseHandler(this)
 
-        //Cargi kas actuvudades que habra en el club
-        if(dbHelper.isTableEmpty()){
-            var clumActivity = dbHelper.addClubActivity("Musculación",150000)
-            clumActivity = dbHelper.addClubActivity("Salsa",55000)
-            clumActivity = dbHelper.addClubActivity("Basquetball",75000)
-        }
-
         val inputDni = findViewById<TextInputEditText>(R.id.input_dni)
         val inputName = findViewById<TextInputEditText>(R.id.input_name)
         val inputSurname = findViewById<TextInputEditText>(R.id.input_surname)
@@ -48,14 +42,16 @@ class RegistryClient : AppCompatActivity() {
         val physicallyFitCheckBox = findViewById<CheckBox>(R.id.chk_apto_fisico)
         val essocioCheckBox = findViewById<CheckBox>(R.id.chk_socio)
 
+        //Cargi kas actuvudades que habra en el club
+        if(dbHelper.isTableEmpty()){
+            var clumActivity = dbHelper.addClubActivity("Musculación",150000)
+            clumActivity = dbHelper.addClubActivity("Salsa",55000)
+            clumActivity = dbHelper.addClubActivity("Basquetball",75000)
+        }
+
         val btnClean = findViewById<Button>(R.id.btn_clean)
         btnClean.setOnClickListener {
-            inputDni.text?.clear()
-            inputName.text?.clear()
-            inputSurname.text?.clear()
-            inputEmail.text?.clear()
-            physicallyFitCheckBox.isChecked = false
-            essocioCheckBox.isChecked = false
+            limpiarDatos()
         }
 
         val btnReturn = findViewById<Button>(R.id.btn_return)
@@ -107,13 +103,11 @@ class RegistryClient : AppCompatActivity() {
                             val fechaActual = LocalDate.now()
                             val formato = DateTimeFormatter.ofPattern("dd/MM/yyyy")
                             val fee = dbHelper.addFee(idClient, 2, fechaActual.format(formato))
-                            showAlertDialog("Usuario Registrado", "Se registró satisfactoriamente a $name $surname")
-                            val registryClient = Intent(this, RegistryClient::class.java)
-                            startActivity(registryClient)
+                            showAlertDialog("Usuario Registrado", "Se registró satisfactoriamente a " + name + " " + surname)
+                            limpiarDatos()
                         }
                     } else {
                         showAlertDialog("Error", "No se pudo registrar al usuario.")
-                        Thread.sleep(20000)
                     }
                 } else {
                     //showAlertDialog("Cliente Existente", "El Cliente con DNI: $dni ya se encuentra registrado")
@@ -124,11 +118,9 @@ class RegistryClient : AppCompatActivity() {
                         dialog.dismiss()
                     }
                     builder.create().show()
-                    Thread.sleep(20000)
                 }
             } else {
                 showAlertDialog("Falta Apto", "Faltó marcar si presenta Apto Físico.")
-                Thread.sleep(20000)
             }
         }
     }
@@ -142,5 +134,21 @@ class RegistryClient : AppCompatActivity() {
             }
             .create()
             .show()
+    }
+
+    private fun limpiarDatos(){
+        val inputDni = findViewById<TextInputEditText>(R.id.input_dni)
+        val inputName = findViewById<TextInputEditText>(R.id.input_name)
+        val inputSurname = findViewById<TextInputEditText>(R.id.input_surname)
+        val inputEmail = findViewById<TextInputEditText>(R.id.input_email)
+        val physicallyFitCheckBox = findViewById<CheckBox>(R.id.chk_apto_fisico)
+        val essocioCheckBox = findViewById<CheckBox>(R.id.chk_socio)
+
+        inputDni.text?.clear()
+        inputName.text?.clear()
+        inputSurname.text?.clear()
+        inputEmail.text?.clear()
+        physicallyFitCheckBox.isChecked = false
+        essocioCheckBox.isChecked = false
     }
 }

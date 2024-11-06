@@ -34,6 +34,7 @@ class Invoice : AppCompatActivity() {
     private var amount = 0
     private var detailFee = ""
     private var idFee = 0
+    private var lbl = 1
     private var lblNroSocioPDF: String? = null
     private var lblDNIPDF: String? = null
     private var lblNameoPDF: String? = null
@@ -74,6 +75,7 @@ class Invoice : AppCompatActivity() {
 
             feeList = dbHelper.listFeeDataById(paramClientId).toMutableList()
 
+            var feeAnt = 0
             feeList.forEach { fee ->
 
                 if(fee.idClientFee != null){
@@ -90,16 +92,16 @@ class Invoice : AppCompatActivity() {
                             detailFee = "Pago Diario"
                         }
 
-                        clubActivityList = dbHelper.clubActivutyDataById(fee.idClientFee).toMutableList()
+                        clubActivityList = dbHelper.clubActivutyDataById(fee.clubAcivityIdFee).toMutableList()
                         clubActivityList.forEach { clubActivity ->
 
-                            amount += clubActivity.costClubActivity
-                            mustraDatos(lbl,clubActivity.nameClibActivity.toString(),clubActivity.costClubActivity.toString())
+                            amount += clubActivity.costClubActivity ?: 0
+                            mustraDatos(clubActivity.nameClibActivity.toString(),clubActivity.costClubActivity.toString())
                             lbl++
                         }
 
                         val lblTotal = findViewById<TextView>(R.id.lbl_total)
-                        lblTotal.text = amount.toString()
+                        lblTotal.text = "Total: " + amount.toString()
                     }
                 }
             }
@@ -122,7 +124,7 @@ class Invoice : AppCompatActivity() {
 
     }
 
-    private fun mustraDatos(lbl:Int, nameActivity:String, costActivity:String){
+    private fun mustraDatos(nameActivity:String, costActivity:String){
 
         when (lbl) {
             1 -> {

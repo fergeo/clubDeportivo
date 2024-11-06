@@ -92,14 +92,22 @@ class ChargeFee : AppCompatActivity() {
                         clubActivityList = dbHelper.clubActivutyDataById(fee.clubAcivityIdFee).toMutableList()
                         clubActivityList.forEach { clubActivity ->
 
-                            amount += clubActivity.costClubActivity
+                            val builder = AlertDialog.Builder(this)
+                            builder.setTitle("lbl "+lbl)
+                            builder.setMessage("lbl vralor "+lbl)
+                            builder.setPositiveButton("Aceptar") { dialog, _ ->
+                                dialog.dismiss()
+                            }
+                            builder.create().show()
+
+                            amount += clubActivity.costClubActivity ?: 0
                             mustraDatos(lbl,clubActivity.nameClibActivity.toString(),clubActivity.costClubActivity.toString())
+                            lbl++
                         }
                     }
-                    lbl++
                 }
                 val lblTotal = findViewById<TextView>(R.id.lbl_total)
-                lblTotal.text = amount.toString()
+                lblTotal.text = "Total: " + amount.toString()
             }
         }
 
@@ -132,14 +140,51 @@ class ChargeFee : AppCompatActivity() {
             if (formaPagoSeleccionada != null && feeSeleccionado != null) {
 
                 dbHelper.updateFeeState(idFee)
+
+                if(feeSeleccionado == 2){
+                    val builder = AlertDialog.Builder(this)
+                    builder.setTitle("Agrregar Impuesto")
+                    builder.setMessage("Se agrego un 10% al pago en 2 cuotas.")
+                    builder.setPositiveButton("Aceptar") { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    builder.create().show()
+                    amount = (amount.toInt() * 1.1).toInt()
+                }
+                else if(feeSeleccionado == 3){
+                    val builder = AlertDialog.Builder(this)
+                    builder.setTitle("Agrregar Impuesto")
+                    builder.setMessage("Se agrego un 15% al pago en 2 cuotas.")
+                    builder.setPositiveButton("Aceptar") { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    builder.create().show()
+                    amount = (amount.toInt() * 1.15).toInt()
+                }
+
                 dbHelper.addPayFee(amount, detailFee, dbHelper.idPaymentMethod(formaPagoSeleccionada!!), feeSeleccionado ?: 0)
 
                 val invoice = Intent(this, Invoice::class.java).apply {
                     putExtra("KEY_DNICLIENT", dniSearch)
                 }
                 startActivity(invoice)
-            } else {
-                // Aquí puedes agregar un mensaje para indicar que se deben seleccionar ambas opciones
+            }else if(formaPagoSeleccionada == "Efectivo" && feeSeleccionado != 1){
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Cuotas Erroneas")
+                builder.setMessage("Solo en una cuota se puede pagar en efectivo.")
+                builder.setPositiveButton("Aceptar") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                builder.create().show()
+            }
+            else {
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Falta Datos")
+                builder.setMessage("Seleccione forma de pago y cuotas.")
+                builder.setPositiveButton("Aceptar") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                builder.create().show()
             }
 
         }

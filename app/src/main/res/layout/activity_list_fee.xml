@@ -214,7 +214,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="15sp"
                         android:layout_marginStart="5dp"
-                        android:text="@string/_10_09_2024" />
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/lbl_dni1"
@@ -222,7 +222,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="15sp"
                         android:layout_marginStart="5dp"
-                        android:text="@string/_30145846" />
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/lbl_nombre1"
@@ -230,7 +230,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="15sp"
                         android:layout_marginStart="10dp"
-                        android:text="@string/juan" />
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/lbl_apellido1"
@@ -238,7 +238,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="15sp"
                         android:layout_marginStart="30dp"
-                        android:text="@string/perez" />
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/lbl_Monto1"
@@ -246,7 +246,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="15sp"
                         android:layout_marginStart="15dp"
-                        android:text="@string/_120000" />
+                        android:text="" />
 
                 </LinearLayout>
 
@@ -266,7 +266,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="15sp"
                         android:layout_marginStart="5dp"
-                        android:text="@string/date_10_09_2024" />
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/lbl_dni2"
@@ -274,7 +274,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="15sp"
                         android:layout_marginStart="5dp"
-                        android:text="@string/date_30145846" />
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/lbl_nombre2"
