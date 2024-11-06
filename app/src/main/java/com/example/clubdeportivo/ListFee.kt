@@ -13,7 +13,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.textfield.TextInputEditText
 
-private operator fun Int.plusAssign(costClubActivity: Int?) {
+operator fun Int.plusAssign(costClubActivity: Int?) {
 
 }
 
@@ -61,12 +61,12 @@ class ListFee : AppCompatActivity() {
                     clientList = dbHelper.clientDataById(fee.idClientFee).toMutableList()
 
                     clientList.forEach { Client ->
-                        if(Client.essocioClient){
+                        if(Client.essocioClient == 1){
                             if(idClientAnt == Client.idClient){
 
                                 clubActivityList = dbHelper.clubActivutyDataById(fee.idClientFee).toMutableList()
                                 clubActivityList.forEach { clubActivity ->
-                                    if(Client.essocioClient){
+                                    if(Client.essocioClient == 1){
                                         amount += clubActivity.costClubActivity
                                     }
                                 }
@@ -169,7 +169,5 @@ class ListFee : AppCompatActivity() {
                 lbl_Monto4.text = amount
             }
         }
-
-
     }
 }

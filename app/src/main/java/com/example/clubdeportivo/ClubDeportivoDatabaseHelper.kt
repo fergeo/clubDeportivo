@@ -11,7 +11,7 @@ class Client {
     var nameClient: String? = null
     var surnameClient: String? = null
     var emailClient: String? = null
-    var essocioClient: Boolean = false
+    var essocioClient: Int = 0
     var nroClient: String? = null
 }
 
@@ -27,6 +27,11 @@ class ClubActivity {
     var clubActityId: Int = 0
     var nameClibActivity: String? = null
     var costClubActivity: Int? = 0
+}
+
+class PaymentMethod{
+    //var idPaymentMethod: Int = 0
+    var namePaymentMethod: String? = null
 }
 
 class ClubDeportivoDatabaseHelper(context: Context) :
@@ -61,11 +66,25 @@ class ClubDeportivoDatabaseHelper(context: Context) :
 
         //Tabla de las Cuotas
         private const val TABLE_FEE = "Fee"
-        private const val COLUMN_ID_FEE = "idFee"
+        private const val COLUMN_FEE_ID = "idFee"
         private const val COLUMN_FEE_ID_CLIENT = "idClientFee"
         private const val COLUMN_FEE_CLUB_ACTIVITY_ID = "clubActicityIdFee"
         private const val COLUMN_FEE_LIMIT_DATE = "limitDateFee"
         private const val COLUMN_FEE_STATE = "stateFee"
+
+        //Tabla de Pagos
+        private const val TABLE_PAYFEE = "PayFee"
+        private const val COLUMN_PAY_FEE_ID = "idPayFee"
+        private const val COLUMN_PAY_FEE_ID_FEE = "idFeePayFee"
+        private const val COLUMN_PAY_FEE_AMOUMT = "amountPayFee"
+        private const val COLUMN__PAY_FEE_DETAIL = "detailPayFee"
+        private const val COLUMN__PAY_FEE_ID_PAYMENT_METHOD = "idPaymentMethodPayFee"
+        private const val COLUMN__PAY_FEE_FEES = "fessPayFee"
+
+        //Tabla Forma de Pagos
+        private const val TABLE_PAYMENT_METHOD = "PaymentMethod"
+        private const val COLUMN_PAYMENT_METHOD_ID = "idPaymentMethod"
+        private const val COLUMN_PAYMENT_METHOD_NAME = "namePaymentMethod"
     }
 
     override fun onCreate(db: SQLiteDatabase) {
@@ -94,14 +113,32 @@ class ClubDeportivoDatabaseHelper(context: Context) :
                 + COLUMN_CLUBACTIVITY_COST + " INTEGER)")
         db.execSQL(createTableActivityClub)
 
+        //Creacion Tabla de Cuotas
         val createTableFee = ("CREATE TABLE " + TABLE_FEE + "("
-                + COLUMN_ID_FEE +  " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + COLUMN_FEE_ID +  " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COLUMN_FEE_ID_CLIENT + " INTEGER, "
                 + COLUMN_FEE_CLUB_ACTIVITY_ID + " INTEGER, "
                 + COLUMN_FEE_LIMIT_DATE + " TEXT, "
                 + COLUMN_FEE_STATE + " INTEGER)")
 
         db.execSQL(createTableFee)
+
+        //Creacion Tabla Pago de Cuotas
+        val createTablePayFee = ("CREATE TABLE " + TABLE_PAYFEE + "("
+                + COLUMN_PAY_FEE_ID +  " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + COLUMN_PAY_FEE_ID_FEE + " INTEGER, "
+                + COLUMN_PAY_FEE_AMOUMT + " INTEGER, "
+                + COLUMN__PAY_FEE_DETAIL + " TEXT, "
+                + COLUMN__PAY_FEE_ID_PAYMENT_METHOD+ " INTEGER, "
+                + COLUMN__PAY_FEE_FEES + " INTEGER)")
+
+        db.execSQL(createTablePayFee)
+
+        val createTablePaymentMethod = ("CREATE TABLE ${TABLE_PAYMENT_METHOD} ("
+                + "${COLUMN_PAYMENT_METHOD_ID} INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "${COLUMN_PAYMENT_METHOD_NAME} TEXT)")
+
+        db.execSQL(createTablePaymentMethod)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -109,6 +146,8 @@ class ClubDeportivoDatabaseHelper(context: Context) :
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CLIENT)
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CLUBACTIVITY)
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_FEE)
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PAYFEE)
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PAYMENT_METHOD)
         onCreate(db)
     }
 
@@ -190,7 +229,7 @@ class ClubDeportivoDatabaseHelper(context: Context) :
                         this.nameClient = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CLIENT_NAME))
                         this.surnameClient = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CLIENT_SURNAME))
                         this.emailClient = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CLIENT_EMAIL))
-                        this.essocioClient = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CLIENT_ESSOCIO)) == 1
+                        this.essocioClient = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CLIENT_ESSOCIO))
                         this.nroClient = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CLIENT_NROCLIENT))
                     }
                     clients.add(client)
@@ -219,7 +258,7 @@ class ClubDeportivoDatabaseHelper(context: Context) :
                         this.nameClient = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CLIENT_NAME))
                         this.surnameClient = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CLIENT_SURNAME))
                         this.emailClient = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CLIENT_EMAIL))
-                        this.essocioClient = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CLIENT_ESSOCIO)) == 1
+                        this.essocioClient = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CLIENT_ESSOCIO))
                         this.nroClient = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CLIENT_NROCLIENT))
                     }
                     clients.add(client)
@@ -278,45 +317,19 @@ class ClubDeportivoDatabaseHelper(context: Context) :
     }
 
 //Funciones para la administracion de Cuotas
-fun addFee(
-    idClientFee: Int,
-    clubActivityId: Int,
-    limitDateFee: String
-): Long {
-    val db = this.writableDatabase
-    val values = ContentValues().apply {
-        put(COLUMN_FEE_ID_CLIENT, idClientFee)
-        put(COLUMN_FEE_CLUB_ACTIVITY_ID, clubActivityId)
-        put(COLUMN_FEE_LIMIT_DATE, limitDateFee)
-        put(COLUMN_FEE_STATE, 0)
-    }
-    return db.insert(TABLE_FEE, null, values)
-}
-
-    fun feeData(idClient: Int): List<Fee> { // Corrección del tipo a Int
-        val db = this.readableDatabase
-        val query = "SELECT * FROM ${TABLE_FEE} WHERE ${COLUMN_FEE_ID_CLIENT} = ? AND ${COLUMN_FEE_STATE} = 0"
-        val cursor = db.rawQuery(query, arrayOf(idClient.toString()))
-        val fees = mutableListOf<Fee>()
-
-        try {
-            if (cursor.moveToFirst()) {
-                do {
-                    val fee = Fee().apply {
-                        idFee = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID_FEE))
-                        this.idClientFee = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_FEE_ID_CLIENT))
-                        clubAcivityIdFee = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_FEE_CLUB_ACTIVITY_ID))
-                        limitDateFee = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_FEE_LIMIT_DATE))
-                        stateFee = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_FEE_STATE))
-                    }
-                    fees.add(fee)
-                } while (cursor.moveToNext())
-            }
-        } finally {
-            cursor.close()
-            db.close()
+    fun addFee(
+        idClientFee: Int,
+        clubActivityId: Int,
+        limitDateFee: String
+    ): Long {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put(COLUMN_FEE_ID_CLIENT, idClientFee)
+            put(COLUMN_FEE_CLUB_ACTIVITY_ID, clubActivityId)
+            put(COLUMN_FEE_LIMIT_DATE, limitDateFee)
+            put(COLUMN_FEE_STATE, 0)
         }
-        return fees
+        return db.insert(TABLE_FEE, null, values)
     }
 
     fun listFeeData(dateFrom: String,dateTo:String): List<Fee> { // Corrección del tipo a Int
@@ -329,11 +342,11 @@ fun addFee(
             if (cursor.moveToFirst()) {
                 do {
                     val fee = Fee().apply {
-                        idFee = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID_FEE))
+                        this.idFee = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_FEE_ID))
                         this.idClientFee = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_FEE_ID_CLIENT))
-                        clubAcivityIdFee = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_FEE_CLUB_ACTIVITY_ID))
-                        limitDateFee = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_FEE_LIMIT_DATE))
-                        stateFee = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_FEE_STATE))
+                        this.clubAcivityIdFee = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_FEE_CLUB_ACTIVITY_ID))
+                        this.limitDateFee = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_FEE_LIMIT_DATE))
+                        this.stateFee = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_FEE_STATE))
                     }
                     fees.add(fee)
                 } while (cursor.moveToNext())
@@ -345,11 +358,112 @@ fun addFee(
         return fees
     }
 
-    fun changeStateFee(idClientFee: Int): Int {
-        val db = writableDatabase
-        val contentValues = ContentValues().apply {
-            put(COLUMN_FEE_ID_CLIENT, idClientFee)
+    fun listFeeDataById(idClientFee: Int): List<Fee> { // Corrección del tipo a Int
+        val db = this.readableDatabase
+        val query = "SELECT * FROM ${TABLE_FEE} WHERE ${COLUMN_FEE_ID_CLIENT} = ?"
+        val cursor = db.rawQuery(query, arrayOf(idClientFee.toString()))
+        val fees = mutableListOf<Fee>()
+
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    val fee = Fee().apply {
+                        this.idFee = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_FEE_ID))
+                        this.idClientFee = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_FEE_ID_CLIENT))
+                        this.clubAcivityIdFee = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_FEE_CLUB_ACTIVITY_ID))
+                        this.limitDateFee = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_FEE_LIMIT_DATE))
+                        this.stateFee = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_FEE_STATE))
+                    }
+                    fees.add(fee)
+                } while (cursor.moveToNext())
+            }
+        } finally {
+            cursor.close()
+            db.close()
         }
-        return db.update(TABLE_FEE, contentValues, "${COLUMN_FEE_ID_CLIENT} = ?", arrayOf(idClientFee.toString()))
+        return fees
+    }
+
+    fun updateFeeState(idFee: Int) {
+        val db = this.writableDatabase
+        val newState = 1
+        val values = ContentValues().apply {
+            put(COLUMN_FEE_STATE, newState)
+        }
+
+        // Condición para identificar el registro a actualizar
+        val selection = "$COLUMN_FEE_ID = ?"
+        val selectionArgs = arrayOf(idFee.toString())
+
+        // Realizar la actualización
+        val count = db.update(TABLE_FEE, values, selection, selectionArgs)
+        db.close()
+    }
+
+//Funciones de administracion de Pagos de Cuotas
+    fun addPayFee(
+        amountFee: Int,
+        detailFee: String,
+        idPaymentMethod: Int,
+        fees: Int
+    ): Long {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put(COLUMN_PAY_FEE_AMOUMT, amountFee)
+            put(COLUMN__PAY_FEE_DETAIL, detailFee)
+            put(COLUMN__PAY_FEE_ID_PAYMENT_METHOD, idPaymentMethod)
+            put(COLUMN__PAY_FEE_FEES, fees)
+        }
+        return db.insert(TABLE_PAYFEE, null, values)
+    }
+
+// Funciones de administracion de Formas de Pago
+    fun addPaymentMehod(namePaymentMethod: String): Long {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put(COLUMN_PAYMENT_METHOD_NAME, namePaymentMethod)
+        }
+        return db.insert(TABLE_PAYMENT_METHOD, null, values)
+    }
+
+    fun idPaymentMethod(name:String): Int { // Corrección del tipo a Int
+        val db = this.readableDatabase
+        val query = "SELECT ${COLUMN_PAYMENT_METHOD_ID} FROM ${TABLE_PAYMENT_METHOD} WHERE ${COLUMN_PAYMENT_METHOD_NAME} = ?"
+        val cursor = db.rawQuery(query, arrayOf(name))
+        var idPaymentMehtd = 1
+
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    idPaymentMehtd = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_PAYMENT_METHOD_ID))
+                } while (cursor.moveToNext())
+            }
+        } finally {
+            cursor.close()
+            db.close()
+        }
+        return idPaymentMehtd
+    }
+
+    fun listPaymentMethod(): List<PaymentMethod> { // Corrección del tipo a Int
+        val db = this.readableDatabase
+        val query = "SELECT ${COLUMN_PAYMENT_METHOD_NAME} FROM ${TABLE_PAYMENT_METHOD}"
+        val cursor = db.rawQuery(query, null)
+        val paymentMethods = mutableListOf<PaymentMethod>()
+
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    val paymentMethod = PaymentMethod().apply {
+                        this.namePaymentMethod = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PAYMENT_METHOD_NAME))
+                    }
+                    paymentMethods.add(paymentMethod)
+                } while (cursor.moveToNext())
+            }
+        } finally {
+            cursor.close()
+            db.close()
+        }
+        return paymentMethods
     }
 }

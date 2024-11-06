@@ -23,6 +23,9 @@ class Login : AppCompatActivity() {
         // Verificar si el usuario administrador ya existe en la base de datos
         if (!dbHelper.checkUser("user@correo.com", "123456")) {
             dbHelper.addUser("user@correo.com", "123456")
+
+            dbHelper.addPaymentMehod("Efectivo")
+            dbHelper.addPaymentMehod("Tarjeta de Credito")
         }
 
         // Configurar el listener del botón de entrada

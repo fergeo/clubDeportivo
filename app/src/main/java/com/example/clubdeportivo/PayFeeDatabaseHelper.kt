@@ -11,7 +11,7 @@ class PayFeeDatabaseHelper(context: Context) :
     companion object {
         private const val DATABASE_NAME = "CLUBDEPORTIVO.db"
         private const val DATABASE_VERSION = 1
-        private const val TABLE_PAYFE = "PayFee"
+        private const val TABLE_PAYFEE = "PayFee"
         private const val COLUMN_PAY_FEE_ID = "idPayFee"
         private const val COLUMN_PAY_FEE_ID_FEE = "idFeePayFee"
         private const val COLUMN_PAY_FEE_AMOUMT = "amountPayFee"
@@ -20,18 +20,18 @@ class PayFeeDatabaseHelper(context: Context) :
     }
 
     override fun onCreate(db: SQLiteDatabase) {
-        val createTableFee = ("CREATE TABLE $TABLE_PAYFE ("
+        val createTablePayFee = ("CREATE TABLE $TABLE_PAYFEE ("
                 + "$COLUMN_PAY_FEE_ID INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + "$COLUMN_PAY_FEE_ID_FEE INTEGER, "
                 + "$COLUMN_PAY_FEE_AMOUMT INTEGER, "
                 + "$COLUMN__PAY_FEE_DETAIL TEXT, "
                 + "$COLUMN__PAY_FEE_ID_PAYMENT_METHOD INTEGER, ")
 
-        db.execSQL(createTableFee)
+        db.execSQL(createTablePayFee)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        db.execSQL("DROP TABLE IF EXISTS $TABLE_PAYFE")
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_PAYFEE")
         onCreate(db)
     }
 
@@ -48,6 +48,6 @@ class PayFeeDatabaseHelper(context: Context) :
             put(COLUMN__PAY_FEE_DETAIL, detailFee)
             put(COLUMN__PAY_FEE_ID_PAYMENT_METHOD, idPaymentMethod)
         }
-        return db.insert(TABLE_PAYFE, null, values)
+        return db.insert(TABLE_PAYFEE, null, values)
     }
 }

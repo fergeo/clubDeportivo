@@ -18,11 +18,11 @@ class UserAdmDatabaseHelper(context: Context) :
     }
 
     override fun onCreate(db: SQLiteDatabase) {
-        val createTableUser = ("CREATE TABLE $TABLE_PAYMENT_METHOD ("
+        val createTablePaymentMethod = ("CREATE TABLE $TABLE_PAYMENT_METHOD ("
                 + "$COLUMN_PAYMENT_METHOD_ID INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + "$COLUMN_PAYMENT_METHOD_NAME TEXT)")
 
-        db.execSQL(createTableUser)
+        db.execSQL(createTablePaymentMethod)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -30,7 +30,7 @@ class UserAdmDatabaseHelper(context: Context) :
         onCreate(db)
     }
 
-    fun addUser(namePaymentMethod: String): Long {
+    fun addPaymentMehod(namePaymentMethod: String): Long {
         val db = this.writableDatabase
         val values = ContentValues().apply {
             put(COLUMN_PAYMENT_METHOD_NAME, namePaymentMethod)
@@ -38,7 +38,6 @@ class UserAdmDatabaseHelper(context: Context) :
         return db.insert(TABLE_PAYMENT_METHOD, null, values)
     }
 
-    @SuppressLint("Range")
     fun allPaymentMethods(): List<String> {
         val db = this.readableDatabase
         val query = "SELECT * FROM $TABLE_PAYMENT_METHOD"

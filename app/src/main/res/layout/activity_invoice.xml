@@ -45,14 +45,14 @@
                 tools:ignore="TextSizeCheck">
 
                 <TextView
-                    android:id="@+id/lbl_number"
+                    android:id="@+id/lbl_numberF"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/nro_de_socio_3510"
                     android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/lbl_dni"
+                    android:id="@+id/lbl_dniF"
                     android:layout_width="160dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="2dp"
@@ -72,7 +72,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/lbl_name"
+                    android:id="@+id/lbl_nameF"
                     android:layout_width="180dp"
                     android:layout_height="match_parent"
                     android:text="@string/nombre_mariela"
@@ -80,7 +80,7 @@
                     tools:ignore="TextSizeCheck" />
 
                 <TextView
-                    android:id="@+id/lbl_surname"
+                    android:id="@+id/lbl_surnameF"
                     android:layout_width="300dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="2dp"
