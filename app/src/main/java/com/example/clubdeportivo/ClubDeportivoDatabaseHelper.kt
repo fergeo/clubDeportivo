@@ -39,7 +39,7 @@ class ClubDeportivoDatabaseHelper(context: Context) :
 
     companion object{
         private const val DATABASE_NAME = "CLUBDEPORTIVO.db"
-        private const val DATABASE_VERSION = 1
+        private const val DATABASE_VERSION = 2
 
         //Tabla Usuarios Administradores
         private const val TABLE_USER = "User"
@@ -255,7 +255,7 @@ class ClubDeportivoDatabaseHelper(context: Context) :
 
     fun clientData(dni: String): List<Client> {
         val db = this.readableDatabase
-        val query = "SELECT * FROM " + TABLE_CLIENT + " WHERE " + COLUMN_CLIENT_DNI + " = ?"
+        val query = "SELECT * FROM Client WHERE dniClient  = ?"
         val cursor = db.rawQuery(query, arrayOf(dni))
         val clients = mutableListOf<Client>()
 

@@ -32,42 +32,33 @@ class PayFee : AppCompatActivity() {
             val inputDni = findViewById<TextInputEditText>(R.id.input_dni_searchP)
             val inputDniVal = inputDni.text.toString()
             if (dbHelper.searchClient(inputDniVal)) {
-                clientList = dbHelper.clientData(inputDni.toString()).toMutableList()
+                clientList = dbHelper.clientData(inputDniVal).toMutableList()
 
                 if(!clientList.isEmpty()){
 
-                    val builder = AlertDialog.Builder(this)
-                    builder.setTitle("ClHaycliente")
-                    builder.setMessage("El donde a un cliente")
-                    builder.setPositiveButton("Aceptar") { dialog, _ ->
-                        dialog.dismiss()
-                    }
-                    builder.create().show()
-
                     clientList.forEach { cliente ->
 
-                        val builder = AlertDialog.Builder(this)
-                        builder.setTitle("Clientexxxxxxx Inexistente")
-                        builder.setMessage("El dni xxxx" + inputDniVal + " no corresponde a un cliente")
-                        builder.setPositiveButton("Aceptar") { dialog, _ ->
-                            dialog.dismiss()
-                        }
-                        builder.create().show()
-
                         feeList = dbHelper.listFeeDataById(cliente.idClient).toMutableList()
-                        feeList.forEach { fee ->
-                            if(fee.idClientFee != null){
-                                val chargeFee = Intent(this, ChargeFee::class.java).apply {
-                                    putExtra("KEY_DNICLIENT", inputDniVal)
+                        if(!feeList.isEmpty()){
+                            feeList.forEach { fee ->
+                                if(fee.idClientFee != null){
+                                    val chargeFee = Intent(this, ChargeFee::class.java).apply {
+                                        putExtra("KEY_DNICLIENT", inputDniVal)
+                                    }
+                                    startActivity(chargeFee)
                                 }
-                                startActivity(chargeFee)
                             }
                         }
+                        else{
+                            mensaje("El dni " + inputDniVal + " no tiene Cuota que pagar.")
+                        }
+
+
                     }
                 }
             }
             else{
-                mensaje("El dni " + inputDniVal + " no corresponde a un cliente")
+                mensaje("El dni " + inputDniVal + " no existe en el sistema.")
             }
         }
 
