@@ -198,6 +198,47 @@
                 android:background="@color/generalBack">
 
                 <!-- Area de Registros -->
+                <TableLayout
+                    android:id="@+id/tableLayoutFee"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="*"
+                    android:padding="16dp"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <!-- Ejemplo de fila con 4 columnas -->
+                    <TableRow>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="" />
+                    </TableRow>
+
+                    <!-- Agrega más filas aquí -->
+                </TableLayout>
+
+                <!--
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
@@ -249,7 +290,6 @@
                         android:text="" />
 
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -301,7 +341,6 @@
                         android:text="@string/mount_120000" />
 
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
@@ -353,7 +392,6 @@
                         android:text="@string/monto_120000" />
 
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
@@ -405,6 +443,7 @@
                         android:text="@string/mount_120000" />
 
                 </LinearLayout>
+                -->
 
             </LinearLayout>
 

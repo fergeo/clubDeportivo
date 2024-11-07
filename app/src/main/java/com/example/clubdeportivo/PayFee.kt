@@ -16,6 +16,8 @@ class PayFee : AppCompatActivity() {
     private lateinit var dbHelper: ClubDeportivoDatabaseHelper
     //private lateinit var dbHelper: ClientDatabaseHelper
     private var clientList = mutableListOf<Client>()
+    private var feeList = mutableListOf<Fee>()
+    var resultado = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,21 +32,43 @@ class PayFee : AppCompatActivity() {
             val inputDni = findViewById<TextInputEditText>(R.id.input_dni_searchP)
             val inputDniVal = inputDni.text.toString()
             if (dbHelper.searchClient(inputDniVal)) {
-                val chargeFee = Intent(this, ChargeFee::class.java).apply {
-                    putExtra("KEY_DNICLIENT", inputDniVal)
-                }
-                startActivity(chargeFee)
-            }
-            else {
-                val builder = AlertDialog.Builder(this)
-                builder.setTitle("Cliente Inexistente")
-                builder.setMessage("El dni " + inputDniVal + " no corresponde a un cliente")
-                builder.setPositiveButton("Aceptar") { dialog, _ ->
-                    dialog.dismiss()
-                }
-                builder.create().show()
-            }
+                clientList = dbHelper.clientData(inputDni.toString()).toMutableList()
 
+                if(!clientList.isEmpty()){
+
+                    val builder = AlertDialog.Builder(this)
+                    builder.setTitle("ClHaycliente")
+                    builder.setMessage("El donde a un cliente")
+                    builder.setPositiveButton("Aceptar") { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    builder.create().show()
+
+                    clientList.forEach { cliente ->
+
+                        val builder = AlertDialog.Builder(this)
+                        builder.setTitle("Clientexxxxxxx Inexistente")
+                        builder.setMessage("El dni xxxx" + inputDniVal + " no corresponde a un cliente")
+                        builder.setPositiveButton("Aceptar") { dialog, _ ->
+                            dialog.dismiss()
+                        }
+                        builder.create().show()
+
+                        feeList = dbHelper.listFeeDataById(cliente.idClient).toMutableList()
+                        feeList.forEach { fee ->
+                            if(fee.idClientFee != null){
+                                val chargeFee = Intent(this, ChargeFee::class.java).apply {
+                                    putExtra("KEY_DNICLIENT", inputDniVal)
+                                }
+                                startActivity(chargeFee)
+                            }
+                        }
+                    }
+                }
+            }
+            else{
+                mensaje("El dni " + inputDniVal + " no corresponde a un cliente")
+            }
         }
 
         val btnReturn = findViewById<Button>(R.id.btn_return)
@@ -52,6 +76,15 @@ class PayFee : AppCompatActivity() {
             val principalScreen = Intent(this, PrincipalScreen::class.java)
             startActivity(principalScreen)
         }
+    }
 
+    fun mensaje(mensaje:String){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Cliente Inexistente")
+        builder.setMessage(mensaje)
+        builder.setPositiveButton("Aceptar") { dialog, _ ->
+            dialog.dismiss()
+        }
+        builder.create().show()
     }
 }

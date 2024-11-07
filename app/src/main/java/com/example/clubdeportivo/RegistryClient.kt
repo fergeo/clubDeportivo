@@ -103,7 +103,7 @@ class RegistryClient : AppCompatActivity() {
                             val fechaActual = LocalDate.now()
                             val formato = DateTimeFormatter.ofPattern("dd/MM/yyyy")
                             val fee = dbHelper.addFee(idClient, 2, fechaActual.format(formato))
-                            showAlertDialog("Usuario Registrado", "Se registró satisfactoriamente a " + name + " " + surname)
+                            showAlertDialog("Cliente Registrado", "Se registró satisfactoriamente a " + name + " " + surname)
                             limpiarDatos()
                         }
                     } else {

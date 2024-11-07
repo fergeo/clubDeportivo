@@ -91,15 +91,6 @@ class ChargeFee : AppCompatActivity() {
 
                         clubActivityList = dbHelper.clubActivutyDataById(fee.clubAcivityIdFee).toMutableList()
                         clubActivityList.forEach { clubActivity ->
-
-                            val builder = AlertDialog.Builder(this)
-                            builder.setTitle("lbl "+lbl)
-                            builder.setMessage("lbl vralor "+lbl)
-                            builder.setPositiveButton("Aceptar") { dialog, _ ->
-                                dialog.dismiss()
-                            }
-                            builder.create().show()
-
                             amount += clubActivity.costClubActivity ?: 0
                             mustraDatos(lbl,clubActivity.nameClibActivity.toString(),clubActivity.costClubActivity.toString())
                             lbl++
@@ -162,12 +153,14 @@ class ChargeFee : AppCompatActivity() {
                     amount = (amount.toInt() * 1.15).toInt()
                 }
 
-                dbHelper.addPayFee(amount, detailFee, dbHelper.idPaymentMethod(formaPagoSeleccionada!!), feeSeleccionado ?: 0)
+                dbHelper.addPayFee(idFee, amount, detailFee, dbHelper.idPaymentMethod(formaPagoSeleccionada!!), feeSeleccionado ?: 0)
 
                 val invoice = Intent(this, Invoice::class.java).apply {
                     putExtra("KEY_DNICLIENT", dniSearch)
                 }
                 startActivity(invoice)
+
+
             }else if(formaPagoSeleccionada == "Efectivo" && feeSeleccionado != 1){
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle("Cuotas Erroneas")

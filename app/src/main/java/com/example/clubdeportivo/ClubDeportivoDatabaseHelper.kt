@@ -214,6 +214,16 @@ class ClubDeportivoDatabaseHelper(context: Context) :
         return exists
     }
 
+    fun searchSocioByDni(dni: String): Boolean {
+        val db = this.readableDatabase
+        val query = "SELECT * FROM ${TABLE_CLIENT} WHERE ${COLUMN_CLIENT_DNI} = ? AND ${COLUMN_CLIENT_ESSOCIO} = 1"
+        val cursor = db.rawQuery(query, arrayOf(dni))
+        val exists = cursor.count > 0
+        cursor.close()
+        db.close()
+        return exists
+    }
+
     fun listarSocios(): List<Client> {
         val db = this.readableDatabase
         val query = "SELECT * FROM ${TABLE_CLIENT} WHERE ${COLUMN_CLIENT_ESSOCIO} = 1"
@@ -245,7 +255,7 @@ class ClubDeportivoDatabaseHelper(context: Context) :
 
     fun clientData(dni: String): List<Client> {
         val db = this.readableDatabase
-        val query = "SELECT * FROM ${TABLE_CLIENT} WHERE ${COLUMN_CLIENT_DNI} = ?"
+        val query = "SELECT * FROM " + TABLE_CLIENT + " WHERE " + COLUMN_CLIENT_DNI + " = ?"
         val cursor = db.rawQuery(query, arrayOf(dni))
         val clients = mutableListOf<Client>()
 
@@ -363,7 +373,7 @@ class ClubDeportivoDatabaseHelper(context: Context) :
 
     fun listFeeData(dateFrom: String,dateTo:String): List<Fee> { // Corrección del tipo a Int
         val db = this.readableDatabase
-        val query = "SELECT * FROM ${TABLE_FEE} WHERE ${COLUMN_FEE_ID_CLIENT} BETWEEN ? AND ?"
+        val query = "SELECT * FROM ${TABLE_FEE} WHERE ${COLUMN_FEE_STATE} = 0 AND ${COLUMN_FEE_ID_CLIENT} BETWEEN ? AND ?"
         val cursor = db.rawQuery(query, arrayOf(dateFrom, dateTo))
         val fees = mutableListOf<Fee>()
 
@@ -389,7 +399,7 @@ class ClubDeportivoDatabaseHelper(context: Context) :
 
     fun listFeeDataById(idClientFee: Int): List<Fee> { // Corrección del tipo a Int
         val db = this.readableDatabase
-        val query = "SELECT * FROM ${TABLE_FEE} WHERE ${COLUMN_FEE_ID_CLIENT} = ?"
+        val query = "SELECT * FROM ${TABLE_FEE} WHERE ${COLUMN_FEE_ID_CLIENT} = ? AND ${COLUMN_FEE_STATE} = 0"
         val cursor = db.rawQuery(query, arrayOf(idClientFee.toString()))
         val fees = mutableListOf<Fee>()
 
@@ -431,6 +441,7 @@ class ClubDeportivoDatabaseHelper(context: Context) :
 
 //Funciones de administracion de Pagos de Cuotas
     fun addPayFee(
+        payEee: Int,
         amountFee: Int,
         detailFee: String,
         idPaymentMethod: Int,
@@ -438,6 +449,7 @@ class ClubDeportivoDatabaseHelper(context: Context) :
     ): Long {
         val db = this.writableDatabase
         val values = ContentValues().apply {
+            put(COLUMN_PAY_FEE_ID_FEE, payEee)
             put(COLUMN_PAY_FEE_AMOUMT, amountFee)
             put(COLUMN__PAY_FEE_DETAIL, detailFee)
             put(COLUMN__PAY_FEE_ID_PAYMENT_METHOD, idPaymentMethod)
