@@ -75,8 +75,6 @@ class ListFee : AppCompatActivity() {
             var dateFee = ""
             clientList.forEach { client ->
 
-
-
                 if(i == 0)
                 {
                     idClientAnt = client.idClient
@@ -93,24 +91,11 @@ class ListFee : AppCompatActivity() {
                 }
                 builder.create().show()
 
-
-
                 if(idClientAnt == client.idClient){
-
-
 
                     feeList = dbHelper.listFeeData(deste, hasta).toMutableList()
                     feeList.forEach { fee ->
                         if(fee.idClientFee != null){
-
-                            var builder = AlertDialog.Builder(this)
-                            builder.setTitle("Cuotas")
-                            builder.setMessage("No hay Socios.")
-                            builder.setPositiveButton("Aceptar") { dialog, _ ->
-                                dialog.dismiss()
-                            }
-                            builder.create().show()
-
 
                             clientList = dbHelper.clientDataById(fee.idClientFee).toMutableList()
                             clubActivityList = dbHelper.clubActivutyDataById(fee.idClientFee).toMutableList()
@@ -146,6 +131,16 @@ class ListFee : AppCompatActivity() {
                 }
                 tableLayout.addView(tableRow)
             }
+        }
+
+        if( cantCuotas == 0 ){
+            var builder = AlertDialog.Builder(this)
+            builder.setTitle("Sin Datos")
+            builder.setMessage("No hay Socios que presenten cuotas a vencer.")
+            builder.setPositiveButton("Aceptar") { dialog, _ ->
+                dialog.dismiss()
+            }
+            builder.create().show()
         }
     }
 }
