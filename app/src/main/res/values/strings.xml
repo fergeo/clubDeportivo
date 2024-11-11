@@ -53,7 +53,7 @@
     <string name="ingresar">Ingresar</string>
     <string name="registrar_cliente">Registrar Cliente</string>
     <string name="inprimir_carnet">Inprimir Carnet</string>
-    <string name="listar_cuotas">Listar CUotas</string>
+    <string name="listar_cuotas">Listar Cuotas</string>
     <string name="salir">Salir</string>
     <string name="imprimir_carnet">Imprimir Carnet</string>
     <string name="fecha_desde">Fecha Desde</string>

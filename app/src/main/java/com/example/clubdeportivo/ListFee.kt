@@ -15,18 +15,36 @@ import com.google.android.material.textfield.TextInputEditText
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
+
+
 class ListFee : AppCompatActivity() {
+
+    class Datos{
+        var dateFee: String? = null
+        var vardniClient: String? = null
+        var nameClient: String? = null
+        var surnameClient: String? = null
+        var amoutTot: String? = null
+    }
 
     private lateinit var dbHelper: ClubDeportivoDatabaseHelper
     //private lateinit var dbHelper: FeeDatabaseHandler
     private var feeList = mutableListOf<Fee>()
     private var listaSocios = mutableListOf<Client>()
+    private var dateFee: String? = null
+    private var dniClient: String? = null
+    private var nameClient: String? = null
+    private var surnameClient: String? = null
+    private var amoutTot: String? = null
+    private var datos = mutableListOf<Datos>()
 
     //private lateinit var dbHelper1: ClientDatabaseHelper
     private var clientList = mutableListOf<Client>()
 
     //private lateinit var dbHelper2: ClubActivitiesDatabaseHelper
     private var clubActivityList = mutableListOf<ClubActivity>()
+
+    private var listaDatos = mutableListOf<Datos>()
 
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("CutPasteId")
@@ -72,15 +90,11 @@ class ListFee : AppCompatActivity() {
         if (!listaSocios.isEmpty()) {
 
             val data: MutableList<MutableList<String>> = mutableListOf()
-            var dateFee = ""
             clientList.forEach { client ->
 
                 if(i == 0)
                 {
                     idClientAnt = client.idClient
-                }
-                else{
-                    i++
                 }
 
                 var builder = AlertDialog.Builder(this)
@@ -96,26 +110,40 @@ class ListFee : AppCompatActivity() {
                     feeList = dbHelper.listFeeData(deste, hasta).toMutableList()
                     feeList.forEach { fee ->
                         if(fee.idClientFee != null){
-
                             clientList = dbHelper.clientDataById(fee.idClientFee).toMutableList()
                             clubActivityList = dbHelper.clubActivutyDataById(fee.idClientFee).toMutableList()
                             clubActivityList.forEach { clubActivity ->
                                 amount += clubActivity.costClubActivity ?: 0
                             }
-                            dateFee = fee.limitDateFee.toString()
+                            dniClient = client.dniClient
+                            nameClient = client.nameClient
+                            surnameClient = client.surnameClient
+                            amoutTot = amount.toString()
+                            dateFee = fee.limitDateFee
+
+                            val datpsObjeto = Datos().apply {
+                                var dateFee: String? = null
+                                var vardniClient: String? = null
+                                var nameClient: String? = null
+                                var surnameClient: String? = null
+                                var amoutTot: String? = null
+                            }
+                            listaDatos.add(datpsObjeto)
+
+                            i++
                         }
                     }
                 }
                 else{
-                    data.add(mutableListOf(dateFee,
-                        client.dniClient.toString(),
-                        client.nameClient.toString(),
-                        client.surnameClient.toString(),
-                        amount.toString()))
+                    data.add(listaDatos.map { it.toString() }.toMutableList())
                     amount = 0
                     cantCuotas++
                     idClientAnt = client.idClient
                 }
+            }
+
+            if(i == 0){
+                data.add(listaDatos.map { it.toString() }.toMutableList())
             }
 
             val tableLayout = findViewById<TableLayout>(R.id.tableLayoutFee)
@@ -144,3 +172,4 @@ class ListFee : AppCompatActivity() {
         }
     }
 }
+
