@@ -82,16 +82,10 @@ class ChargeFee : AppCompatActivity() {
                     clientList = dbHelper.clientDataById(fee.idClientFee).toMutableList()
 
                     clientList.forEach { client ->
-                        if(client.essocioClient == 1 ){
-                            detailFee = "Pago Mensual"
-                        }
-                        else{
-                            detailFee = "Pago Diario"
-                        }
-
                         clubActivityList = dbHelper.clubActivutyDataById(fee.clubAcivityIdFee).toMutableList()
                         clubActivityList.forEach { clubActivity ->
-                            amount += clubActivity.costClubActivity ?: 0
+                            var costo = clubActivity.costClubActivity ?: 0
+                            amount += costo
                             mustraDatos(lbl,clubActivity.nameClibActivity.toString(),clubActivity.costClubActivity.toString())
                             lbl++
                         }
@@ -128,7 +122,25 @@ class ChargeFee : AppCompatActivity() {
         val btnPay = findViewById<Button>(R.id.btn_pay)
         btnPay.setOnClickListener {
 
-            if (formaPagoSeleccionada != null && feeSeleccionado != null) {
+            if(formaPagoSeleccionada == "Efectivo" && feeSeleccionado != 1){
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Cuotas Erroneas")
+                builder.setMessage("Solo en una cuota se puede pagar en efectivo.")
+                builder.setPositiveButton("Aceptar") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                builder.create().show()
+            }
+            else if (formaPagoSeleccionada == null && feeSeleccionado == null) {
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Falta Datos")
+                builder.setMessage("Seleccione forma de pago y cuotas.")
+                builder.setPositiveButton("Aceptar") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                builder.create().show()
+            }
+            else if (formaPagoSeleccionada != null && feeSeleccionado != null) {
 
                 dbHelper.updateFeeState(idFee)
 
@@ -157,29 +169,11 @@ class ChargeFee : AppCompatActivity() {
 
                 val invoice = Intent(this, Invoice::class.java).apply {
                     putExtra("KEY_DNICLIENT", dniSearch)
+                    putExtra("KEY_FORMAPAGO", formaPagoSeleccionada)
+                    putExtra("KEY_CUOTAS", feeSeleccionado)
                 }
                 startActivity(invoice)
-
-
-            }else if(formaPagoSeleccionada == "Efectivo" && feeSeleccionado != 1){
-                val builder = AlertDialog.Builder(this)
-                builder.setTitle("Cuotas Erroneas")
-                builder.setMessage("Solo en una cuota se puede pagar en efectivo.")
-                builder.setPositiveButton("Aceptar") { dialog, _ ->
-                    dialog.dismiss()
-                }
-                builder.create().show()
             }
-            else {
-                val builder = AlertDialog.Builder(this)
-                builder.setTitle("Falta Datos")
-                builder.setMessage("Seleccione forma de pago y cuotas.")
-                builder.setPositiveButton("Aceptar") { dialog, _ ->
-                    dialog.dismiss()
-                }
-                builder.create().show()
-            }
-
         }
 
         // Manejo del botón de cancelación

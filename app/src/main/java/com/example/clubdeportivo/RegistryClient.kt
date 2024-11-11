@@ -5,9 +5,7 @@ import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.CheckBox
-import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity

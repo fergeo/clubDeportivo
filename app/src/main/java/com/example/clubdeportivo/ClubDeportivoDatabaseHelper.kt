@@ -4,6 +4,10 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.os.Build
+import androidx.annotation.RequiresApi
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class Client {
     var idClient: Int = 0
@@ -371,10 +375,24 @@ class ClubDeportivoDatabaseHelper(context: Context) :
         return db.insert(TABLE_FEE, null, values)
     }
 
-    fun listFeeData(dateFrom: String,dateTo:String): List<Fee> { // Corrección del tipo a Int
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun listFeeData(dateFrom: String, dateTo:String): List<Fee> { // Corrección del tipo a Int
+
+        var paramDateFrom = dateFrom
+        var paramdateTo = dateTo
+
+        if(paramDateFrom == "" && paramdateTo != ""){
+            val fechaActual = LocalDate.now()
+            val formato = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+            paramDateFrom = fechaActual.format(formato)
+            paramdateTo = fechaActual.format(formato)
+        }
+
         val db = this.readableDatabase
-        val query = "SELECT * FROM ${TABLE_FEE} WHERE ${COLUMN_FEE_STATE} = 0 AND ${COLUMN_FEE_ID_CLIENT} BETWEEN ? AND ?"
-        val cursor = db.rawQuery(query, arrayOf(dateFrom, dateTo))
+        //val query = "SELECT * FROM ${TABLE_FEE} WHERE ${COLUMN_FEE_STATE} = 0 AND ${COLUMN_FEE_LIMIT_DATE} BETWEEN ? AND ?"
+        //val cursor = db.rawQuery(query, arrayOf(paramDateFrom, paramdateTo))
+        val query = "SELECT * FROM ${TABLE_FEE} WHERE ${COLUMN_FEE_STATE} = 0"
+        val cursor = db.rawQuery(query, null)
         val fees = mutableListOf<Fee>()
 
         try {

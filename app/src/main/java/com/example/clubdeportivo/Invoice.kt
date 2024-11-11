@@ -18,6 +18,7 @@ import android.os.Environment
 import android.text.TextPaint
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import java.io.File
@@ -43,6 +44,9 @@ class Invoice : AppCompatActivity() {
     private var lblDetail2PDF: String? = null
     private var lblDetail3PDF: String? = null
     private var lblTotalPDF: String? = null
+    private var formaPago: String? = null
+    private var cuotas: String? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +55,8 @@ class Invoice : AppCompatActivity() {
         dbHelper = ClubDeportivoDatabaseHelper(this)
 
         val dniSearch = intent.getStringExtra  ("KEY_DNICLIENT")
+        formaPago = intent.getStringExtra("KEY_FORMAPAGO")
+        cuotas = intent.getStringExtra("KEY_CUOTAS")
 
         if (dniSearch != null) {
             clientList = dbHelper.clientData(dniSearch).toMutableList()
@@ -75,7 +81,6 @@ class Invoice : AppCompatActivity() {
 
             feeList = dbHelper.listFeeDataById(paramClientId).toMutableList()
 
-            var feeAnt = 0
             feeList.forEach { fee ->
 
                 if(fee.idClientFee != null){
@@ -85,25 +90,32 @@ class Invoice : AppCompatActivity() {
                     clientList = dbHelper.clientDataById(fee.idClientFee).toMutableList()
 
                     clientList.forEach { client ->
-                        if(client.essocioClient == 1 ){
-                            detailFee = "Pago Mensual"
+                        val builder = AlertDialog.Builder(this)
+                        builder.setTitle("Cuotas Erroneas")
+                        builder.setMessage("an actividad." + dniSearch)
+                        builder.setPositiveButton("Aceptar") { dialog, _ ->
+                            dialog.dismiss()
                         }
-                        else{
-                            detailFee = "Pago Diario"
-                        }
+                        builder.create().show()
 
                         clubActivityList = dbHelper.clubActivutyDataById(fee.clubAcivityIdFee).toMutableList()
                         clubActivityList.forEach { clubActivity ->
-
-                            amount += clubActivity.costClubActivity ?: 0
-                            mustraDatos(clubActivity.nameClibActivity.toString(),clubActivity.costClubActivity.toString())
+                            var costo = clubActivity.costClubActivity ?: 0
+                            amount += costo
+                            mustraDatos(lbl,clubActivity.nameClibActivity.toString(),clubActivity.costClubActivity.toString())
                             lbl++
                         }
-
-                        val lblTotal = findViewById<TextView>(R.id.lbl_total)
-                        lblTotal.text = "Total: " + amount.toString()
                     }
                 }
+
+                val lblTotal = findViewById<TextView>(R.id.lbl_totalInvoice)
+                lblTotal.text = "Total: " + amount.toString()
+
+                val formaPagoLabel = findViewById<TextView>(R.id.lbl_pay_way_invoice)
+                formaPagoLabel.text = "Forma de Pago; " + formaPago
+
+                val cuotasPagadas = findViewById<TextView>(R.id.lbl_fee_invoice)
+                cuotasPagadas.text = "Cuotas; " + cuotas
             }
         }
 
@@ -113,6 +125,8 @@ class Invoice : AppCompatActivity() {
         //    requestPermissions()
         //}
 
+
+        //Imprimir
         val btn_print = findViewById<Button>(R.id.btn_print)
         btn_print.setOnClickListener {
 
@@ -124,28 +138,28 @@ class Invoice : AppCompatActivity() {
 
     }
 
-    private fun mustraDatos(nameActivity:String, costActivity:String){
+    private fun mustraDatos(lbl: Int, nameActivity:String, costActivity:String){
 
         when (lbl) {
             1 -> {
-                val lblActivity1 = findViewById<TextView>(R.id.lbl_activity1)
+                val lblActivity1 = findViewById<TextView>(R.id.lbl_activity1Invoice)
                 lblActivity1.text = nameActivity
 
-                val lblMount1 = findViewById<TextView>(R.id.lbl_mount1)
+                val lblMount1 = findViewById<TextView>(R.id.lbl_mount1Invoice)
                 lblMount1.text = costActivity
             }
             2 -> {
-                val lblActivity2 = findViewById<TextView>(R.id.lbl_activity2)
+                val lblActivity2 = findViewById<TextView>(R.id.lbl_activity2Invoice)
                 lblActivity2.text = nameActivity
 
-                val lblMount2 = findViewById<TextView>(R.id.lbl_mount2)
+                val lblMount2 = findViewById<TextView>(R.id.lbl_mount2Invoice)
                 lblMount2.text = costActivity
             }
             3 -> {
-                val lblActivity3 = findViewById<TextView>(R.id.lbl_activity3)
+                val lblActivity3 = findViewById<TextView>(R.id.lbl_activity3Invoice)
                 lblActivity3.text = nameActivity
 
-                val lblMount2 = findViewById<TextView>(R.id.lbl_mount2)
+                val lblMount2 = findViewById<TextView>(R.id.lbl_mount2Invoice)
                 lblMount2.text = costActivity
             }
         }

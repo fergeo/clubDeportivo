@@ -153,7 +153,7 @@
                 tools:ignore="TextSizeCheck">
 
                 <TextView
-                    android:id="@+id/lbl_activity1"
+                    android:id="@+id/lbl_activity1Invoice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -161,7 +161,7 @@
                     android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/lbl_mount1"
+                    android:id="@+id/lbl_mount1Invoice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="190dp"
@@ -181,7 +181,7 @@
                 tools:ignore="TextSizeCheck">
 
                 <TextView
-                    android:id="@+id/lbl_activity2"
+                    android:id="@+id/lbl_activity2Invoice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -189,7 +189,7 @@
                     android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/lbl_mount2"
+                    android:id="@+id/lbl_mount2Invoice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="175dp"
@@ -209,7 +209,7 @@
                 tools:ignore="TextSizeCheck">
 
                 <TextView
-                    android:id="@+id/lbl_activity3"
+                    android:id="@+id/lbl_activity3Invoice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -217,7 +217,7 @@
                     android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/lbl_mount3"
+                    android:id="@+id/lbl_mount3Invoice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="125dp"
@@ -247,7 +247,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/lbl_total"
+                    android:id="@+id/lbl_totalInvoice"
                     android:layout_width="160dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="190dp"
@@ -270,7 +270,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/lbl_pay_way"
+                android:id="@+id/lbl_pay_way_invoice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -278,7 +278,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/lbl_fee"
+                android:id="@+id/lbl_fee_invoice"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginStart="10dp"
